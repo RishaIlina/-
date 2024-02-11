@@ -1,0 +1,81 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:after, *:before {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+  transition: .5s ease-in-out;
+}
+
+body {
+  color: #000;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+a {
+text-decoration: none;
+color: inherit;
+}
+
+
+ul {
+  list-style: none;
+}
+
+button {
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+
+.title {
+  margin-bottom: 15px;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.container {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.section--decor {
+  position: relative;
+}
+
+.section--decor::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image: url(../../public/section-decor.png);
+  width: 22px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.section--decor::after {
+  content: '';
+  position: absolute;
+  left: 22px;
+  bottom: 13px;
+  background-color: #7B6152;
+  width: 150%;
+  height: 1px;
+}
+
+/* Атомарные классы*/
+.pb_150 {
+  padding-bottom: 150px;
+}

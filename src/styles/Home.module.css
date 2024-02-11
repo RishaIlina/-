@@ -1,0 +1,94 @@
+.main {
+    background-color: #FFF8F3;
+    overflow-x: clip;
+}
+
+.top {
+    padding-top: 40px;
+    padding-bottom: 150px;
+}
+
+.top__inner {
+    position: relative;
+}
+
+.top__content {
+    width: 370px;
+    padding: 150px 0 250px;
+}
+
+.top__title {
+    font-family: 'Yeseva One', serif;
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.top__text {
+    margin-bottom: 48px;
+}
+
+.top__btn {
+    padding: 18px 54px;
+    background: #FFBD59;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.top__img {
+    position: absolute;
+    top: 0;
+    left: 240px;
+}
+
+/* Наши товары */
+.section__inner {
+    display: grid;
+    grid-template-columns: 450px auto;
+}
+
+.section__content_descr {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding-bottom: 92px;
+}
+
+.products {
+    padding-top: 150px;
+}
+
+.products__content {
+    gap: 50px 30px
+}
+
+.products__item {
+    width: 290px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.products__item_img {
+    width: 274px;
+    height: 310px;
+    margin-bottom: 8px;
+}
+
+.products__item_price {
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-family: 'Yeseva One', serif;
+    font-weight: 400;
+}
+
+.products__item_title {
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-family: 'Yeseva One', serif;
+    font-weight: 400;
+}
+
+.products__item_text {
+    margin-bottom: 27px;
+    font-size: 12px;
+}
