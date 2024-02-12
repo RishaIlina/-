@@ -48,11 +48,17 @@ button {
   padding: 0 10px;
 }
 
-.section--decor {
+.section__content_descr {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding-bottom: 92px;
+}
+
+.section__decor {
   position: relative;
 }
 
-.section--decor::before {
+.section__decor::before {
   content: '';
   position: absolute;
   left: 0;
@@ -65,17 +71,61 @@ button {
   background-size: cover;
 }
 
-.section--decor::after {
+.section__decor::after {
   content: '';
   position: absolute;
   left: 22px;
   bottom: 13px;
   background-color: #7B6152;
-  width: 150%;
+  width: 108%;
   height: 1px;
+}
+
+.section__inner {
+  display: grid;
+  grid-template-columns: 450px auto;
+}
+
+.products__content {
+  gap: 50px 30px
+}
+
+.products__item {
+  width: 290px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.products__item_img {
+  width: 274px;
+  height: 310px;
+  margin-bottom: 8px;
+}
+
+.products__item_title {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-family: 'Yeseva One', serif;
+  font-weight: 600;
+}
+
+.products__item_text {
+  margin-bottom: 27px;
+  font-size: 12px;
+}
+
+.products__item_price {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-family: 'Yeseva One', serif;
+  font-weight: 600;
 }
 
 /* Атомарные классы*/
 .pb_150 {
   padding-bottom: 150px;
+}
+
+.pt_150 {
+  padding-top: 150px;
 }
