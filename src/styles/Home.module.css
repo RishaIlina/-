@@ -41,3 +41,44 @@
     top: 0;
     left: 240px;
 }
+
+/* Этапы создания свечей */
+.steps__list {
+    gap: 70px 25px;
+    counter-reset: number;
+}
+
+.steps__item {
+    display: flex;
+    gap: 40px;
+    list-style-type: none;
+    position: relative;
+}
+
+.steps__item::before {
+    counter-increment: number;
+    content: '0' counter(number);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-family: 'Yeseva One', cursive;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    color: #BEA495;
+}
+
+.steps__item.steps__item__even::before {
+    left: auto;
+    right: 0;
+}
+
+.steps__item_text {
+    flex-basis: 174px;
+    padding-bottom: 40px;
+}
+
+.steps__item img{
+    width: 160px;
+    height: 220px;
+}

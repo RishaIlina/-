@@ -3,7 +3,6 @@
 
 <img src="./readme_assets/1.png" width="100%">
 
-<h2 align="center"><a  href="https://rishailina.github.io/Candles_shop/">Посмотреть проект</a></h2>
 
 ## Разработка
 
@@ -14,11 +13,6 @@
 Для установки зависимостей, выполните команду:
 ```sh
 $ npm i
-```
-### Установка tailwindcss
-Для установки зависимостей, выполните команду:
-```sh
-$ npm install tailwindcss
 ```
 
 ### Запуск Development сервера
