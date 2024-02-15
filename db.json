@@ -1,0 +1,52 @@
+{
+    "products": [
+      {
+        "id": "1",
+        "name": "Белая роза",
+        "price": "700 ₽",
+        "imgSrc": "/shopping__card-candle-1.jpg"
+      },
+      {
+        "id": "2",
+        "name": "Свеча в дереве",
+        "price": "1700 ₽",
+        "imgSrc": "/shopping__card-candle-13.jpg"
+      },
+      {
+        "id": "3",
+        "name": "Бутон",
+        "price": "820 ₽",
+        "imgSrc": "/shopping__card-candle-9.jpg"
+      },
+      {
+        "id": "4",
+        "name": "Ранункулюс",
+        "price": "820 ₽",
+        "imgSrc": "/shopping__card-candle-4.jpg"
+      },
+      {
+        "id": "5",
+        "name": "Набор макарун",
+        "price": "1500 ₽",
+        "imgSrc": "/shopping__card-candle-8.jpg"
+      },
+      {
+        "id": "6",
+        "name": "Куб",
+        "price": "500 ₽",
+        "imgSrc": "/shopping__card-candle-12.jpg"
+      },
+      {
+        "id": "7",
+        "name": "Набор Наслаждение",
+        "price": "2500 ₽",
+        "imgSrc": "/shopping__card-candle-7.jpg"
+      },
+      {
+        "id": "8",
+        "name": "Цветочная симфония",
+        "price": "600 ₽",
+        "imgSrc": "/shopping__card-candle-11.jpg"
+      }
+    ]
+  }
