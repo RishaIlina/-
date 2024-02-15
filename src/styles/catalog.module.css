@@ -1,0 +1,29 @@
+.products_inner {
+    display: flex;
+}
+
+.products__item_card {
+    border: 1px solid #f3f3f3;
+    padding: 30px;
+    width: 240px;
+    border-radius: 40px;
+}
+
+.products__item_title {   
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-family: 'Yeseva One', serif;
+    font-weight: 400;
+}
+  
+.products__item_text {
+    margin-bottom: 27px;
+    font-size: 12px;
+}
+  
+.products__item_price {
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-family: 'Yeseva One', serif;
+    font-weight: 400;
+}

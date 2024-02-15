@@ -1,7 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css"
 import Image from "next/image";
-import Button from "../components/ui/Botton/Button";
 
 /* Домашнаяя страница */
 const Home = () => (
@@ -27,8 +26,8 @@ const Home = () => (
               К покупкам!
             </button>
             <picture className={styles.top__img}>
-              <source srcSet="/top-s.png" media="(max-width: 360px)" alt="ассортимент свечей" />
-              <source srcSet="/top-m.png" media="(max-width: 480px)" alt="ассортимент свечей" />
+              <source srcSet="image/top-s.png" media="(max-width: 360px)" alt="ассортимент свечей" />
+              <source srcSet="image/top-m.png" media="(max-width: 480px)" alt="ассортимент свечей" />
               <Image width={1073} height={693} className="top__img-l" src="/top-l.png" alt="ассортимент свечей" />
             </picture>
           </div>

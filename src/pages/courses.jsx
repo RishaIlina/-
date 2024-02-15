@@ -18,7 +18,7 @@ export default function courses() {
             <div className={` ${styles.courses__content} products__content section__content_descr section__decor `}>
                 <div className={` ${styles.courses__item} products__item `}>
                 <div className={styles.courses__item_img}>
-                    <Image className="products__item_img" src="/course-1.jpg" width={274} height={310} alt="Основы изготовления свечек" />
+                    <Image className="products__item_img" src="/image/course-1.jpg" width={274} height={310} alt="Основы изготовления свечек" />
                     <p className={styles.courses__title}>Основы изготовления свечек</p>
                     <p className={styles.courses__time}>Обучение <span> - 24 год</span></p>
                     <p className={styles.courses__priсe}>Цена 4000₽</p>
@@ -32,7 +32,7 @@ export default function courses() {
         
                 <div className={` ${styles.courses__item} products__item `}>
                 <div className={styles.courses__item_img}>
-                    <Image className="products__item_img" src="/course-2.jpg" width={274} height={310} alt="Искусство ароматерапии" />
+                    <Image className="products__item_img" src="/image/course-2.jpg" width={274} height={310} alt="Искусство ароматерапии" />
                     <p className={styles.courses__title}>Искусство ароматерапии</p>
                     <p className={styles.courses__time}>Обучение <span> - 24 год</span></p>
                     <p className={styles.courses__priсe}>Цена 4000₽</p>
@@ -48,7 +48,7 @@ export default function courses() {
         </div>
     </section>
 
-    <section className={` ${styles.team} pb-150 `}>
+    <section className={styles.team}>
         <div className={` container section__inner `}>
             <div className="section__descr">
                 <h2 className={` title ${styles.team__title} `}>Наши учителя</h2>
@@ -57,28 +57,28 @@ export default function courses() {
 
             <div className={` ${styles.team__content} section__content_descr `}>
                 <div className={styles.team__item}>
-                    <Image className={styles.team__img} src="/team-1.jpg" width={224} height={220} alt="Преподаватель Богдан" />
+                    <Image className={styles.team__img} src="/image/team-1.jpg" width={224} height={220} alt="Преподаватель Богдан" />
                     <div className={styles.team__item_box}>
                         <p className={styles.team__item_name}>Преподаватель Богдан</p>
                         <p className={styles.team__item_descr}>Имеет опыт преподавания и работы 4 года</p>
                     </div>
                 </div>
                 <div className={styles.team__item}>
-                    <Image className={styles.team__img} src="/team-2.jpg" width={224} height={220}  alt="Преподаватель Анна" />
+                    <Image className={styles.team__img} src="/image/team-2.jpg" width={224} height={220}  alt="Преподаватель Анна" />
                     <div className={styles.team__item_box}>
                         <p className={styles.team__item_name}>Преподаватель Анна</p>
                         <p className={styles.team__item_descr}>Имеет опыт преподавания и работы 6 лет</p>
                     </div>
                 </div>
                 <div className={styles.team__item}>
-                    <Image className={styles.team__img} src="/team-3.jpg" width={224} height={220}  alt="Преподаватель Галина" />
+                    <Image className={styles.team__img} src="/image/team-3.jpg" width={224} height={220}  alt="Преподаватель Галина" />
                     <div className={styles.team__item_box}>
                         <p className={styles.team__item_name}>Преподаватель Галина</p>
                         <p className={styles.team__item_descr}>Обучает сфере дизайна и декорирования</p>
                     </div>
                 </div>
                 <div className={styles.team__item}>
-                    <Image className={styles.team__img} src="/team-4.jpg" width={224} height={220}  alt="Маркетолог Ольга" />
+                    <Image className={styles.team__img} src="/image/team-4.jpg" width={224} height={220}  alt="Маркетолог Ольга" />
                     <div className={styles.team__item_box}>
                         <p className={styles.team__item_name}>Маркетолог Ольга</p>
                         <p className={styles.team__item_descr}>Поможет вам с рекламой</p>

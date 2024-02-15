@@ -1,15 +1,6 @@
 .footer {
-    padding: 40px 0 150px;
+    padding: 50px 0;
     background-color: #FFF8F3;
-}
-
-.menu__list {
-    display: flex;
-    gap: 20px;
-}
-
-.menu__list_link {
-    text-transform: uppercase;
 }
 
 .footer__inner {
@@ -27,12 +18,19 @@
 .footer__phone {
     display: flex;
     align-items: center;
+    transition: opacity 500ms ease;
+}
+
+.footer__phone:hover,
+.email:hover {
+    opacity: 0.5;
 }
 
 .email {
     display: flex;
     align-items: center;
     margin: 17px 0;
+    transition: opacity 500ms ease;
 }
 
 .email img {
@@ -50,4 +48,9 @@
 .footer__social_link img {
     width: 22px;
     height: 22px;
+    transition: opacity 500ms ease;
+}
+
+.footer__social_link img:hover {
+    opacity: 0.5;
 }

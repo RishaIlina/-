@@ -1,6 +1,7 @@
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
       <div className={`container ${styles.header__inner}`}>
         <Link legacyBehavior href="/">
           <a className={styles.logo}>
-            <Image width={70} height={70} alt="logo" className={styles.logo__img} src="/logo-header.svg" />
+            <Image width={70} height={70} alt="logo" className={styles.logo__img} src="image/logo-header.svg" />
           </a>
         </Link>
         <nav className={`${styles.menu} ${styles.header__menu}`}>
@@ -19,40 +20,36 @@ const Header = () => {
             <span></span>
             <span></span>
           </button>
-          <ul className={`${styles.menu__list} ${styles.header__menu_list}`}>
-            <li className={styles.menu__list_item}>
+          <ul className={` menu__list ${styles.header__menu_list}`}>
+            <li className="menu__list_item">
               <Link legacyBehavior href="/about">
-                <a className={styles.menu__list_link}>Про нас</a>
+                <a className="menu__list_link">Про нас</a>
               </Link>
             </li>
-            <li className={styles.menu__list_item}>
+            <li className="menu__list_item">
               <Link legacyBehavior href="/catalog">
-                <a className={styles.menu__list_link}>Каталог</a>
+                <a className="menu__list_link">Каталог</a>
               </Link>
             </li>
-            <li className={styles.menu__list_item}>
-              <Link legacyBehavior href="/team">
-                <a className={styles.menu__list_link}>Команда</a>
-              </Link>
-            </li>
-            <li className={styles.menu__list_item}>
+            <li className="menu__list_item">
               <Link legacyBehavior href="/reviews">
-                <a className={styles.menu__list_link}>Отзывы</a>
+                <a className="menu__list_link">Отзывы</a>
               </Link>
             </li>
-            <li className={styles.menu__list_item}>
+            <li className="menu__list_item">
               <Link legacyBehavior href="/courses">
-                <a className={styles.menu__list_link}>Курсы</a>
-              </Link>
-            </li>
-            <li className={styles.menu__list_item}>
-              <Link legacyBehavior href="/contact">
-                <a className={styles.menu__list_link}>Контакты</a>
+                <a className="menu__list_link">Курсы</a>
               </Link>
             </li>
           </ul>
         </nav>
-        <a className={styles.phone} href="tel:+79648558585">+7 964 855 85 85</a>
+        
+        <button id="open_basket" className="btn_icon">
+        <HiOutlineShoppingBag size={30}/>
+        </button>
+        
+
+
       </div>
     </header>
   );

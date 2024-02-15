@@ -35,6 +35,11 @@ button {
   padding: 0;
   border-radius: 0;
   cursor: pointer;
+  transition: opacity 500ms ease;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 
 
@@ -48,6 +53,21 @@ button {
   max-width: 1350px;
   margin: 0 auto;
   padding: 0 10px;
+}
+
+/* Навигация */
+.menu__list {
+  display: flex;
+  gap: 20px;
+}
+
+.menu__list_link {
+  text-transform: uppercase;
+  transition: opacity 500ms ease;
+}
+
+.menu__list_link:hover {
+  opacity: 0.5;
 }
 
 .section__content_descr {
@@ -65,7 +85,7 @@ button {
   position: absolute;
   left: 0;
   bottom: 0;
-  background-image: url(../../public/section-decor.png);
+  background-image: url(/image/section-decor.png);
   width: 22px;
   height: 30px;
   background-repeat: no-repeat;
@@ -100,29 +120,25 @@ button {
 }
 
 .products__item_img {
-  width: 274px;
-  height: 310px;
   margin-bottom: 8px;
 }
 
-.products__item_title {
-  margin-bottom: 16px;
-  font-size: 16px;
-  font-family: 'Yeseva One', serif;
-  font-weight: 600;
+.btn_icon {
+  position: relative;
+  border-radius: 50%;
+  background: transparent;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 0;
+  cursor: pointer;
 }
 
-.products__item_text {
-  margin-bottom: 27px;
-  font-size: 12px;
+.btn_icon:hover {
+  opacity: 0.5;
 }
 
-.products__item_price {
-  margin-bottom: 12px;
-  font-size: 16px;
-  font-family: 'Yeseva One', serif;
-  font-weight: 600;
-}
+
+
 
 /* Атомарные классы*/
 .pb_150 {
