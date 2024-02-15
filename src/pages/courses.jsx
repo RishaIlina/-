@@ -1,6 +1,5 @@
 import styles from "../styles/Courses.module.css"
 import Image from "next/image";
-import Button from "../components/ui/Botton/Button";
 
 export default function courses() {
   return (
@@ -27,7 +26,7 @@ export default function courses() {
                 <p className={` ${styles.courses__item_text} products__item_text `}>
                     Будем обучать основам изготовления свечей из разных материалов.
                 </p>
-                <Button>Купить курс</Button>
+                <button className={` button courses__btn animate-hover `} type="button">Купить курс</button>
                 </div>
         
                 <div className={` ${styles.courses__item} products__item `}>
@@ -42,7 +41,7 @@ export default function courses() {
                     свечей с разными
                     ароматами.
                 </p>
-                <Button>Купить курс</Button>
+                <button className={` button courses__btn animate-hover `} type="button">Купить курс</button>
                 </div>
             </div>
         </div>

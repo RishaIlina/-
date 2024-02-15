@@ -26,16 +26,7 @@
     align-items: center;
 }
 
-.phone {
-    position: relative;
-}
-
-.phone::before {
-    content: '';
-    position: absolute;
-    background-image: url(../../../public/image/phone.svg);
-    width: 20px;
-    height: 20px;
-    left: -23px;
-    top: -3px;
+.header__right {
+    display: flex;
+    gap: 10px;
 }

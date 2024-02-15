@@ -1,7 +1,6 @@
 import styles from "./Header.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 const Header = () => {
   return (
@@ -44,12 +43,17 @@ const Header = () => {
           </ul>
         </nav>
         
-        <button id="open_basket" className="btn_icon">
-        <HiOutlineShoppingBag size={30}/>
-        </button>
-        
-
-
+        <div className={styles.header__right}>
+          <button id="open_basket" className="btn_icon">
+           <Image width={23} height={23} alt="logo" src="image/basket.svg" />
+          </button>
+          <button className="btn_icon">
+           <Image width={23} height={23} alt="logo" src="image/heart.svg" />
+          </button>
+          <button className="btn_icon">
+           <Image width={23} height={23} alt="logo" src="image/user.svg" />
+          </button>
+        </div>
       </div>
     </header>
   );
