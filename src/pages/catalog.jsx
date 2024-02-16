@@ -1,24 +1,12 @@
+import Card from "../components/Card/Card";
+import Drawer from "../components/Drawer/Drawer";
 import styles from "../styles/catalog.module.css";
 import Image from "next/image";
 
 export default function catalog() {
   return (
     <section className="products">
-
-        <div className={styles.products__overlay}>
-            <div className={styles.products__drawer}>
-                <h2 className={styles.products__drawer_title}>Корзина</h2>
-                <div className={styles.cart__item}>
-                    <Image src="/image/shopping__card-candle-1.jpg" alt="Свеча" width={80} height={80} className={styles.cart__item_img} />
-                    <div className={styles.cart__item_descr}>
-                        <p className={styles.cart__item_title}>Свеча "Ранункулюс"</p>
-                        <p className={styles.cart__item_price}>820₽</p>
-                    </div>
-                    <Image src="/image/btn-remove.svg" alt="Кнопка закрытия корзины" width={31} height={31} className={styles.cart__item_remove} />
-                </div>
-            </div>
-        </div>
-        
+      <Drawer />
 
       <div className={styles.products__search}>
         <div className={styles.search__block}>
@@ -34,144 +22,12 @@ export default function catalog() {
       </div>
 
       <div className={`container ${styles.products_inner}`}>
-        <div className={` products__item ${styles.products__item_card} `}>
-          <Image
-            width={174}
-            height={210}
-            src="/image/product-1.jpg"
-            alt="Свеча"
-            className={styles.products__item_img}
-          />
-          <div className={styles.products__item_top}>
-            <p>Свеча "Пион"</p>
-            <div className={styles.favorite}>
-              <Image
-                width={17}
-                height={17}
-                src="/image/heart.svg"
-                alt="Сердце не лайкнутое"
-              />
-            </div>
-          </div>
 
-          <div className={styles.products__item_bottom}>
-            <div className={styles.products__item_info}>
-              <span>Цена:</span>
-              <p className={styles.products__item_price}>650₽</p>
-            </div>
-            <button className={` btn_icon ${styles.btn_icon_add} `}>
-              <Image
-                width={11}
-                height={11}
-                src="/image/plus.svg"
-                alt="Добавить"
-              />
-            </button>
-          </div>
-        </div>
-        <div className={` products__item ${styles.products__item_card} `}>
-          <Image
-            width={174}
-            height={210}
-            src="/image/product-2.jpg"
-            alt="Свеча"
-            className={styles.products__item_img}
-          />
-
-          <div className={styles.products__item_top}>
-            <p>Свеча "Ранункулюс"</p>
-            <div className={styles.favorite}>
-              <Image
-                width={17}
-                height={17}
-                src="/image/heart.svg"
-                alt="Сердце не лайкнутое"
-              />
-            </div>
-          </div>
-          <div className={styles.products__item_bottom}>
-            <div className={styles.products__item_info}>
-              <span>Цена:</span>
-              <p className={styles.products__item_price}>820₽</p>
-            </div>
-            <button className={` btn_icon ${styles.btn_icon_add} `}>
-              <Image
-                width={11}
-                height={11}
-                src="/image/plus.svg"
-                alt="Добавить"
-              />
-            </button>
-          </div>
-        </div>
-        <div className={` products__item ${styles.products__item_card} `}>
-          <Image
-            width={174}
-            height={210}
-            src="/image/product-3.jpg"
-            alt="Свеча"
-            className={styles.products__item_img}
-          />
-            <div className={styles.products__item_top}>
-                <p>Свеча "Вихрь любви"</p>
-                <div className={styles.favorite}>
-                    <Image
-                        width={17}
-                        height={17}
-                        src="/image/heart.svg"
-                        alt="Сердце не лайкнутое"
-                    />
-                </div>
-            </div>
-          <div className={styles.products__item_bottom}>
-            <div className={styles.products__item_info}>
-              <span>Цена:</span>
-              <p className={styles.products__item_price}>700₽</p>
-            </div>
-            <button className={` btn_icon ${styles.btn_icon_add} `}>
-              <Image
-                width={11}
-                height={11}
-                src="/image/plus.svg"
-                alt="Добавить"
-              />
-            </button>
-          </div>
-        </div>
-        <div className={` products__item ${styles.products__item_card} `}>
-          <Image
-            width={174}
-            height={210}
-            src="/image/product-4.jpg"
-            alt="Свеча"
-            className={styles.products__item_img}
-          />
-          <div className={styles.products__item_top}>
-            <p>Свеча "Куб"</p>
-            <div className={styles.favorite}>
-              <Image
-                width={17}
-                height={17}
-                src="/image/heart.svg"
-                alt="Сердце не лайкнутое"
-              />
-            </div>
-          </div>
-          <div className={styles.products__item_bottom}>
-            <div className={styles.products__item_info}>
-              <span>Цена:</span>
-              <p className={styles.products__item_price}>740₽</p>
-            </div>
-            <button className={` btn_icon ${styles.btn_icon_add} `}>
-              <Image
-                width={11}
-                height={11}
-                src="/image/plus.svg"
-                alt="Добавить"
-              />
-            </button>
-          </div>
-        </div>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        
       </div>
     </section>
   );
