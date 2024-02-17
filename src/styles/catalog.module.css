@@ -12,11 +12,6 @@
     width: 200px;
 }
 
-.products_inner {
-    display: flex;
-    padding-bottom: 100px;
-}
-
 .search__block {
     border: 1px solid #f3f3f3;
     display: flex;

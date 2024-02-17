@@ -21,13 +21,8 @@ export default function catalog() {
         </div>
       </div>
 
-      <div className={`container ${styles.products_inner}`}>
-
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        
+      <div className={`container products_inner`}>
+        <Card />
       </div>
     </section>
   );
