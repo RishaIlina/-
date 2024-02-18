@@ -1,10 +1,21 @@
-import styles from "../Card/Card.module.css";
+import styles from "./Card.module.css";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function Card() {
   // Стейт для отображения карточек
   const [products, setProducts] = useState([]);
+
+  /// Создаем объект состояний для каждой карточки
+  const [isAddedState, setIsAddedState] = useState({});
+
+  // Функция для обновления состояния конкретной карточки
+  const onClickAddToCart = (cardId) => {
+  setIsAddedState((prevState) => ({
+    ...prevState,
+    [cardId]: !prevState[cardId]
+  }));
+};
 
   useEffect(() => {
     getProductsFromServer(); // Вызов для отрисовки данных
@@ -15,17 +26,17 @@ export default function Card() {
    */
   const getProductsFromServer = () => {
     fetch(`http://localhost:3004/products`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Ошибка при получении данных');
-      }
-      return response.json();
-    })
-    .then((data) => setProducts(data))
-    .catch((error) => {
-      console.error(error);
-    });
-};
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка при получении данных");
+        }
+        return response.json();
+      })
+      .then((data) => setProducts(data))
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   // Итерация по данным и отрисовка карточек
   const renderData =
@@ -58,11 +69,18 @@ export default function Card() {
             <span>Цена:</span>
             <p className={styles.products__item_price}>{product?.price}</p>
           </div>
-          <button className={` btn_icon ${styles.btn_icon_add} `}>
+          <button
+            className="btn_icon"
+            onClick={() => onClickAddToCart(product.id)}
+          >
             <Image
-              width={11}
-              height={11}
-              src="/image/plus.svg"
+              width={32}
+              height={32}
+              src={
+                isAddedState[product.id]
+                  ? "/image/btn-checked.svg"
+                  : "/image/btn-plus.svg"
+              }
               alt="Добавить"
             />
           </button>
