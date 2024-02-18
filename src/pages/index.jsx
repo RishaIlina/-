@@ -11,6 +11,7 @@ const Home = () => (
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
+    
     <main className={styles.main}>
       <section className={styles.top}>
         <div className={`container ${styles.top__inner}`}>

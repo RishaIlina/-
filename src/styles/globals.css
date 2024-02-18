@@ -38,20 +38,25 @@ button {
   padding: 0;
   border-radius: 0;
   cursor: pointer;
-  transition: opacity 500ms ease;
-}
-
-button:hover {
-  opacity: 0.8;
 }
 
 .button {
   padding: 18px 54px;
-  background: #FFBD59;
+  background-color: #FFBD59;
   font-family: 'Comfortaa', sans-serif;
   font-size: 14px;
   font-weight: 600;
+  transition: background-color 0.1s ease-in-out;
 }
+
+.button:hover {
+  background-color: rgba(255, 189, 89, 0.9);
+}
+
+.button:active {
+  background-color: rgba(255, 189, 89, 0.8);
+}
+
 
 .title {
   margin-bottom: 15px;

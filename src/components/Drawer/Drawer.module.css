@@ -8,6 +8,7 @@
     background-color: rgba(0, 0, 0, 0.1);
     z-index: 1;
     display: none;
+    
 }
 
 .products__drawer {
@@ -72,4 +73,39 @@
 
 .cart__item_remove:hover {
     opacity: 1;
+}
+
+.cart__item__total_price {
+    display: flex;
+    align-items: flex-end;
+}
+
+.cart__total_ellipsis {
+    flex: 1;
+    height: 1px;
+    border-bottom: 1px dashed #dfdfdf;
+    position: relative;
+    top: -4px;
+    margin: 0 7px;
+}
+
+.cart__total_btn {
+    width: 100%;
+    height: 55px;
+    margin-top: 30px;
+    border-radius: 18px;
+    position: relative;
+}
+
+.cart__total_btn:hover {
+    .cart__total_arrow {
+        transform: translateX(5px);
+    }
+}
+
+.cart__total_arrow {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    transition: transform 0.15s ease-in-out;
 }
