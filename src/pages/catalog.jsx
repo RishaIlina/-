@@ -1,12 +1,10 @@
 import Card from "../components/Card/Card";
-import Drawer from "../components/Drawer/Drawer";
 import styles from "../styles/catalog.module.css";
 import Image from "next/image";
 
 export default function catalog() {
   return (
     <section className="products">
-      <Drawer />
 
       <div className={styles.products__search}>
         <div className={styles.search__block}>

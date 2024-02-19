@@ -2,24 +2,19 @@ import styles from "./Card.module.css";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
+/**
+ * Компонент карточки товара.
+ */
 export default function Card() {
   // Стейт для отображения карточек
   const [products, setProducts] = useState([]);
 
-  /// Создаем объект состояний для каждой карточки
-  const [isAddedState, setIsAddedState] = useState({});
-
-  // Функция для обновления состояния конкретной карточки
-  const onClickAddToCart = (cardId) => {
-  setIsAddedState((prevState) => ({
-    ...prevState,
-    [cardId]: !prevState[cardId]
-  }));
-};
-
   useEffect(() => {
     getProductsFromServer(); // Вызов для отрисовки данных
   });
+
+  /// Объект состояний для информации о добавлении товаров в корзину
+  const [isAddedState, setIsAddedState] = useState({});
 
   /**
    * Функция для получения товаров из базы данных.
@@ -38,12 +33,23 @@ export default function Card() {
       });
   };
 
+   /**
+   * Функция для обновления состояния конкретной карточки.
+   * @param {number} id - Идентификатор товара.
+   */
+  const onClickAddToCart = (id) => {
+    setIsAddedState(prevState => ({
+      ...prevState,
+      [id]: !prevState[id]
+    }));
+  };
+
   // Итерация по данным и отрисовка карточек
   const renderData =
     products.length > 0 &&
-    products.map((product, index) => (
+    products.map((product) => (
       <div
-        key={index}
+        key={product.id}
         className={` products__item ${styles.products__item_card} `}
       >
         <Image
@@ -54,7 +60,7 @@ export default function Card() {
           className={styles.products__item_img}
         />
         <div className={styles.products__item_top}>
-          <p>Свеча {product?.name}</p>
+          <p>{product?.name}</p>
           <div className={styles.favorite}>
             <Image
               width={17}
