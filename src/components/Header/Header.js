@@ -61,8 +61,8 @@ const Header = () => {
           </nav>
 
           <div className={styles.header__right}>
-            <button id="open_basket" className="btn_icon">
-              <Image width={23} height={23} alt="logo" src="image/basket.svg" onClick={toggleCart} />
+            <button id="open_basket" className="btn_icon" onClick={toggleCart}>
+              <Image width={23} height={23} alt="logo" src="image/basket.svg" />
             </button>
             <button className="btn_icon">
               <Image width={23} height={23} alt="logo" src="image/heart.svg" />

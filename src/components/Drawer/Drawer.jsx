@@ -22,21 +22,6 @@ export default function Drawer({ closeCart }) {
     closeCart(); // Вызов функции из props для закрытия корзины в Header
   };
 
-  // закрытие корзины при клике за ее пределами
-  useEffect(() => {
-    const handleDocumentClick = (e) => {
-      if (isCartOpen && !e.target.closest(".products__drawer")) {
-        closeCartHandler();
-      }
-    };
-
-    document.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, [isCartOpen]);
-
   return (
     <div
       className={
