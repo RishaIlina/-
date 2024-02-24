@@ -33,7 +33,7 @@ export default function Courses() {
   ];
 
   // итерация по данным и отрисовка преподавателей
-  const renderData =
+  const teachersList =
     initialTeachers.length > 0 &&
     initialTeachers.map((teacher) => (
       <Teachers key={teacher?.id} details={teacher} />
@@ -60,7 +60,7 @@ export default function Courses() {
   ];
 
   // итерация по данным и отрисовка карточек с курсами
-  const renderItems =
+  const coursesList =
     initialCardCourses.length > 0 &&
     initialCardCourses.map((course) => (
       <CardCourses key={course?.id} details={course} />
@@ -82,7 +82,7 @@ export default function Courses() {
           <div
             className={` ${styles.courses__content} products__content section__content_descr section__decor `}
           >
-              {renderItems}
+              {coursesList}
           </div>
         </div>
       </section>
@@ -98,7 +98,7 @@ export default function Courses() {
           </div>
 
           <div className={` ${styles.team__content} section__content_descr `}>
-            {renderData}
+            {teachersList}
           </div>
         </div>
       </section>
