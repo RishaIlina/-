@@ -1,0 +1,36 @@
+.courses__item_img {
+    position: relative;
+    color: #FFF;
+    font-size: 11px;
+    font-family: 'Yeseva One', cursive;
+}
+
+.courses__priсe,
+.courses__title,
+.courses__time {
+  position: absolute;
+  background-color: #BEA495;
+}
+
+.courses__title {
+    padding: 15px;
+    left: 5px;
+    top: 43%;
+}
+
+.courses__time {
+    padding: 7px 10px;
+    left: 5px;
+    top: 60%;
+}
+
+.courses__time span {
+    font-size: 10px;
+    font-family: 'Comfortaa', sans-serif;
+}
+
+.courses__priсe {
+    padding: 19px 10px;
+    right: 2px;
+    bottom: 2px;
+}

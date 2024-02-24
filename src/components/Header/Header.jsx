@@ -3,6 +3,7 @@ import Drawer from "../Drawer/Drawer";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Navigation from "../Navigation/Navigation";
 
 const Header = () => {
   // стейт для открытия корзины
@@ -14,7 +15,7 @@ const Header = () => {
 
   return (
     <>
-      {cartOpened && <Drawer closeCart={() => setCartOpened(false)} />}
+      {cartOpened && <Drawer isOpen={() => toggleCart()}/>}
       <header className={styles.header}>
         <div className={`container ${styles.header__inner}`}>
           <Link legacyBehavior href="/">
@@ -36,28 +37,8 @@ const Header = () => {
               <span></span>
               <span></span>
             </button>
-            <ul className={` menu__list ${styles.header__menu_list}`}>
-              <li className="menu__list_item">
-                <Link legacyBehavior href="/about">
-                  <a className="menu__list_link">Про нас</a>
-                </Link>
-              </li>
-              <li className="menu__list_item">
-                <Link legacyBehavior href="/catalog">
-                  <a className="menu__list_link">Каталог</a>
-                </Link>
-              </li>
-              <li className="menu__list_item">
-                <Link legacyBehavior href="/reviews">
-                  <a className="menu__list_link">Отзывы</a>
-                </Link>
-              </li>
-              <li className="menu__list_item">
-                <Link legacyBehavior href="/courses">
-                  <a className="menu__list_link">Курсы</a>
-                </Link>
-              </li>
-            </ul>
+
+            <Navigation />
           </nav>
 
           <div className={styles.header__right}>

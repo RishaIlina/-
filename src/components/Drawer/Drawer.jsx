@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./Drawer.module.css";
 import Image from "next/image";
 
 /**
  * Компонент корзины с товарами.
- * @param {Function} closeCart - Функция для закрытия корзины.
+ * @param {Function} isOpen - Функция для открытия/закрытия корзины.
  */
-export default function Drawer({ closeCart }) {
+export default function Drawer({ isOpen }) {
   // стейт закрытия корзины при клике на кнопку
-  const [isCartOpen, setIsCartOpen] = useState(true);
+  // const [isCartOpen, setIsCartOpen] = useState(true);
 
   // стейт для скрытия тени от корзины
   const [isOverlayOpen, setIsOverlayOpen] = useState(true);
@@ -17,9 +17,9 @@ export default function Drawer({ closeCart }) {
    * Обработчик закрытия корзины.
    */
   const closeCartHandler = () => {
-    setIsCartOpen(false);
+    // setIsCartOpen(false);
     setIsOverlayOpen(false);
-    closeCart(); // Вызов функции из props для закрытия корзины в Header
+    isOpen(false); // Вызов функции из props для закрытия корзины в Header
   };
 
   return (
@@ -30,7 +30,7 @@ export default function Drawer({ closeCart }) {
           : styles.products__overlay_hidden
       }
     >
-      {isCartOpen && (
+      {isOpen && (
         <div className={styles.products__drawer}>
           <h2 className={styles.products__drawer_title}>
             Корзина

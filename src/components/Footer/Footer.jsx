@@ -1,6 +1,7 @@
 import styles from "./Footer.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import Navigation from "../Navigation/Navigation";
 
 const Footer = () => {
     return (
@@ -13,29 +14,8 @@ const Footer = () => {
                 </Link>
                 <nav className={`menu ${styles.footer__menu}`}>
                     <button className={styles.menu__btn}></button>
-                    <ul className={` menu__list ${styles.footer__menu_list}`}>
-                        <li className="menu__list_item">
-                        <Link legacyBehavior href="/about">
-                            <a className="menu__list_link">Про нас</a>
-                        </Link>
-                        </li>
-                        <li className="menu__list_item">
-                        <Link legacyBehavior href="/catalog">
-                            <a className="menu__list_link">Каталог</a>
-                        </Link>
-                        </li>
-                        <li className="menu__list_item">
-                        <Link legacyBehavior href="/reviews">
-                            <a className="menu__list_link">Отзывы</a>
-                        </Link>
-                        </li>
-                        <li className="menu__list_item">
-                        <Link legacyBehavior href="/courses">
-                            <a className="menu__list_link">Курсы</a>
-                        </Link>
-                        </li>
-                        
-                    </ul>
+  
+                    <Navigation />
                 </nav>
                 <div className={styles.footer__contacts}>
                         <a className={styles.footer__phone} href="tel:+79648558585">

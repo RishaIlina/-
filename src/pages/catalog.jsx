@@ -1,8 +1,12 @@
+import { useState } from "react";
 import Card from "../components/Card/Card";
-import styles from "../styles/catalog.module.css";
+import styles from "../styles/Catalog.module.css";
 import Image from "next/image";
 
-export default function catalog() {
+export default function Catalog() {
+  // стейт для хранения товаров в корзине
+  const [cartProducts, setCartProducts] = useState([]);
+
   return (
     <section className="products">
 
