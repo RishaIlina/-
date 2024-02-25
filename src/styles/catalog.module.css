@@ -1,3 +1,13 @@
+.products__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.products__top_title {
+    padding: 40px;
+}
+
 .products__search {
     display: flex;
     justify-content: flex-end;
@@ -6,11 +16,24 @@
 
 .search__input {
     border: 0;
+    outline: none;
     padding: 13px;
     font-size: 16px;
     margin-left: 10px;
     width: 200px;
 }
+
+.clear__button {
+    background: transparent;
+    border: none;
+    color: #c3c3c3;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .clear__button:hover {
+    color: #868585; /* изменение цвета при наведении */
+  }
 
 .search__block {
     border: 1px solid #f3f3f3;

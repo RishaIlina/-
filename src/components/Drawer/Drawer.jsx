@@ -6,9 +6,7 @@ import Image from "next/image";
  * Компонент корзины с товарами.
  * @param {Function} isOpen - Функция для открытия/закрытия корзины.
  */
-export default function Drawer({ isOpen }) {
-  // стейт закрытия корзины при клике на кнопку
-  // const [isCartOpen, setIsCartOpen] = useState(true);
+export default function Drawer({ products, isOpen }) {
 
   // стейт для скрытия тени от корзины
   const [isOverlayOpen, setIsOverlayOpen] = useState(true);
@@ -17,7 +15,6 @@ export default function Drawer({ isOpen }) {
    * Обработчик закрытия корзины.
    */
   const closeCartHandler = () => {
-    // setIsCartOpen(false);
     setIsOverlayOpen(false);
     isOpen(false); // Вызов функции из props для закрытия корзины в Header
   };
@@ -45,26 +42,28 @@ export default function Drawer({ isOpen }) {
           </h2>
 
           <div className={styles.cart__items}>
-            <div className={styles.cart__item}>
-              <Image
-                src="/image/shopping__card-candle-1.jpg"
-                alt="Свеча"
-                width={80}
-                height={80}
-                className={styles.cart__item_img}
-              />
-              <div className={styles.cart__item_descr}>
-                <p className={styles.cart__item_title}>Свеча "Ранункулюс"</p>
-                <p className={styles.cart__item_price}>820₽</p>
+            {products.map((product) => (
+              <div className={styles.cart__item} key={product?.id}>
+                <Image
+                  src={product?.imgSrc}
+                  alt={product?.name}
+                  width={80}
+                  height={80}
+                  className={styles.cart__item_img}
+                />
+                <div className={styles.cart__item_descr}>
+                  <p className={styles.cart__item_title}>{product?.name}</p>
+                  <p className={styles.cart__item_price}>{product?.price}</p>
+                </div>
+                <Image
+                  src="/image/btn-remove.svg"
+                  alt="Кнопка удаления товара"
+                  width={31}
+                  height={31}
+                  className={styles.cart__item_remove}
+                />
               </div>
-              <Image
-                src="/image/btn-remove.svg"
-                alt="Кнопка удаления товара"
-                width={31}
-                height={31}
-                className={styles.cart__item_remove}
-              />
-            </div>
+            ))}
           </div>
 
           <div className={styles.cart__total_block}>

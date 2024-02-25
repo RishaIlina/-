@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Navigation from "../Navigation/Navigation";
 
-const Header = () => {
+const Header = ({cartItems}) => {
   // стейт для открытия корзины
   const [cartOpened, setCartOpened] = useState(false);
 
@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <>
-      {cartOpened && <Drawer isOpen={() => toggleCart()}/>}
+      {cartOpened && <Drawer products={cartItems} isOpen={toggleCart} />}
       <header className={styles.header}>
         <div className={`container ${styles.header__inner}`}>
           <Link legacyBehavior href="/">

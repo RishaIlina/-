@@ -1,12 +1,20 @@
 import styles from "./Card.module.css";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 /**
  * Компонент карточки товара.
  */
 export default function Card(props) {
-  const { name, imgSrc, price } = props.details;
+  const { name, imgSrc, price, onClickAddToCart } = props.details;
+
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleAddToCart = () => {
+   // onClickAddToCart(product);
+    setIsAdded(!isAdded);
+  };
+
 
   return (
     <>
@@ -36,17 +44,13 @@ export default function Card(props) {
           </div>
           <button
             className="btn_icon"
-            /*onClick={() => onClickAddToCart(product.id)}*/
+            onClick={handleAddToCart}
           >
             <Image
               width={32}
               height={32}
-              src={
-               /* isAddedState[product.id]
-                  ? "/image/btn-checked.svg"
-                  :*/ "/image/btn-plus.svg"
-              }
-              alt="Добавить"
+              src={isAdded ? "/image/btn-checked.svg" : "/image/btn-plus.svg"}
+              alt={isAdded ? "Добавлено" : "Добавить"}
             />
           </button>
         </div>
