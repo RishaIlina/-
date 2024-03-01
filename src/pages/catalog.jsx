@@ -42,12 +42,13 @@ export default function Catalog() {
   };
   console.log(cartItems);
 
+  // поиск по названию
+  const filterProducts = products.filter((product) => product.name.toLowerCase().includes(searchValue.toLowerCase()))
+
   // итерация по данным и отрисовка карточек
   const productList =
     products.length > 0 &&
-    products
-      .filter((product) => product.name.toLowerCase().includes(searchValue.toLowerCase()))
-      .map((product) => (
+    filterProducts.map((product) => (
         <Card
           key={product?.id}
           details={product}
