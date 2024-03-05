@@ -6,15 +6,12 @@ import { useState } from "react";
  * Компонент карточки товара.
  */
 export default function Card(props) {
-  const { name, imgSrc, price, onClickAddToCart } = props.details;
-
+  const { name, imgSrc, price, id} = props.details;
   const [isAdded, setIsAdded] = useState(false);
 
-  const handleAddToCart = () => {
-   // onClickAddToCart(product);
+  const onClickAddToCart = () => {
     setIsAdded(!isAdded);
   };
-
 
   return (
     <>
@@ -42,10 +39,7 @@ export default function Card(props) {
             <span>Цена:</span>
             <p className={styles.products__item_price}>{price}</p>
           </div>
-          <button
-            className="btn_icon"
-            onClick={handleAddToCart}
-          >
+          <button className="btn_icon" onClick={onClickAddToCart}>
             <Image
               width={32}
               height={32}

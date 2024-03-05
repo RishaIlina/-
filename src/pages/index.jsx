@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Header from "../components/Header/Header";
 import styles from "../styles/Home.module.css";
 import StagesOfCreation from "../components/StagesOfCreation/StagesOfCreation";
 import Image from "next/image";
@@ -73,6 +74,7 @@ const Home = () => {
       </Head>
 
       <main className={styles.main}>
+        <Header />
         <section className={styles.top}>
           <div className={`container ${styles.top__inner}`}>
             <div className={styles.top__content}>

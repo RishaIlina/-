@@ -4,18 +4,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Navigation from "../Navigation/Navigation";
+import RegistrationForm from "../ui/RegistrationForm/RegistrationForm";
 
-const Header = ({cartItems}) => {
+const Header = () => {
   // стейт для открытия корзины
   const [cartOpened, setCartOpened] = useState(false);
+
+  // стейт для открытия формы регистрации
+  const [registrationFormOpened, setRegistrationFormOpened] = useState(false);
 
   const toggleCart = () => {
     setCartOpened(!cartOpened);
   };
 
+  const toggleRegistrationForm = () => {
+    setRegistrationFormOpened(!registrationFormOpened);
+  };
+
+
   return (
     <>
-      {cartOpened && <Drawer products={cartItems} isOpen={toggleCart} />}
+      {cartOpened && <Drawer isOpen={toggleCart}/>}
+      {registrationFormOpened && <RegistrationForm isOpen={toggleRegistrationForm} />}
       <header className={styles.header}>
         <div className={`container ${styles.header__inner}`}>
           <Link legacyBehavior href="/">
@@ -48,7 +58,7 @@ const Header = ({cartItems}) => {
             <button className="btn_icon">
               <Image width={23} height={23} alt="logo" src="image/heart.svg" />
             </button>
-            <button className="btn_icon">
+            <button className="btn_icon" onClick={toggleRegistrationForm}>
               <Image width={23} height={23} alt="logo" src="image/user.svg" />
             </button>
           </div>

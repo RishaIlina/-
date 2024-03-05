@@ -1,11 +1,15 @@
 import "../styles/globals.css";
+import { CartProvider } from '@mrvautin/react-shoppingcart';
 import MainLayout from "../Layouts/MainLayout";
 
 /* Корневой элемент страницы */
 const App = ({ Component, pageProps }) => (
-  <MainLayout>
+  <CartProvider>
+    <MainLayout>
       <Component {...pageProps} />
-  </MainLayout>
+    </MainLayout>
+  </CartProvider>
+    
 );
 
 export default App;

@@ -6,8 +6,7 @@ import Image from "next/image";
  * Компонент корзины с товарами.
  * @param {Function} isOpen - Функция для открытия/закрытия корзины.
  */
-export default function Drawer({ products, isOpen }) {
-
+export default function Drawer({ isOpen, products=[] }) {
   // стейт для скрытия тени от корзины
   const [isOverlayOpen, setIsOverlayOpen] = useState(true);
 
@@ -18,6 +17,7 @@ export default function Drawer({ products, isOpen }) {
     setIsOverlayOpen(false);
     isOpen(false); // Вызов функции из props для закрытия корзины в Header
   };
+  
 
   return (
     <div
@@ -30,30 +30,30 @@ export default function Drawer({ products, isOpen }) {
       {isOpen && (
         <div className={styles.products__drawer}>
           <h2 className={styles.products__drawer_title}>
-            Корзина
+          <p>Корзина</p>
             <Image
               src="/image/btn-remove.svg"
               alt="Кнопка закрытия корзины"
               width={31}
               height={31}
-              className={styles.cart__item_close}
               onClick={closeCartHandler}
+              className={styles.cart__item_close}
             />
           </h2>
 
           <div className={styles.cart__items}>
             {products.map((product) => (
-              <div className={styles.cart__item} key={product?.id}>
+              <div className={styles.cart__item} key={product.id}>
                 <Image
-                  src={product?.imgSrc}
-                  alt={product?.name}
+                  src={product.imgSrc}
+                  alt="Свеча"
                   width={80}
                   height={80}
                   className={styles.cart__item_img}
                 />
                 <div className={styles.cart__item_descr}>
-                  <p className={styles.cart__item_title}>{product?.name}</p>
-                  <p className={styles.cart__item_price}>{product?.price}</p>
+                  <p className={styles.cart__item_title}>{product.name}</p>
+                  <p className={styles.cart__item_price}>{product.price}</p>
                 </div>
                 <Image
                   src="/image/btn-remove.svg"
@@ -62,6 +62,7 @@ export default function Drawer({ products, isOpen }) {
                   height={31}
                   className={styles.cart__item_remove}
                 />
+                
               </div>
             ))}
           </div>
