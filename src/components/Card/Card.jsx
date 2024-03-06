@@ -1,16 +1,23 @@
 import styles from "./Card.module.css";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../CartContext/CartContext";
 
 /**
  * Компонент карточки товара.
  */
 export default function Card(props) {
-  const { name, imgSrc, price, id} = props.details;
+  const { name, imgSrc, price } = props.details;
+  // Стейт для смены картинки
   const [isAdded, setIsAdded] = useState(false);
 
+  // Стейт для добавления товара в корзину
+  const { addItemToCart } = useContext(CartContext);
+
+  // При клике на кнопку меняется значок и товар добавляется в корзину
   const onClickAddToCart = () => {
     setIsAdded(!isAdded);
+    addItemToCart(props.details);
   };
 
   return (
