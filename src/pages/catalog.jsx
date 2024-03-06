@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Card from "../components/Card/Card";
 import Header from "../components/Header/Header";
 import styles from "../styles/Catalog.module.css";
 import Image from "next/image";
 import Drawer from "../components/Drawer/Drawer";
+import { CartContext } from "../components/CartContext/CartContext";
 
 export default function Catalog() {
-
+  const { addItemToCart } = useContext(CartContext);
   // Стейт для отображения карточек
   const [products, setProducts] = useState([]);
 
@@ -39,14 +40,14 @@ export default function Catalog() {
     product.name.toLowerCase().includes(searchValue.toLowerCase())
   );
 
-  // итерация по данным и отрисовка карточек
+  // Итерация по данным и отрисовка карточек
   const productList =
     products.length > 0 &&
     filterProducts.map((product) => (
       <Card
         key={product?.id}
         details={product}
-        onClick={() => addItem(product)}
+        onClick={() => addItem(addItemToCart)}
       />
     ));
 
@@ -57,9 +58,7 @@ export default function Catalog() {
   return (
     <>
       <Header>
-        <Drawer
-          products={products}
-        />
+        <Drawer />
       </Header>
 
       <section className="products">

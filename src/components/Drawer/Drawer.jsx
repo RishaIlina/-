@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import { useState } from "react";
 import styles from "./Drawer.module.css";
 import Image from "next/image";
+import { CartContext } from "../CartContext/CartContext";
 
 /**
  * Компонент корзины с товарами.
  * @param {Function} isOpen - Функция для открытия/закрытия корзины.
  */
 export default function Drawer({ isOpen, products=[] }) {
+  const { cartItems } = useContext(CartContext);
+
   // стейт для скрытия тени от корзины
   const [isOverlayOpen, setIsOverlayOpen] = useState(true);
 
@@ -17,6 +21,9 @@ export default function Drawer({ isOpen, products=[] }) {
     setIsOverlayOpen(false);
     isOpen(false); // Вызов функции из props для закрытия корзины в Header
   };
+
+  // Суммирование цен всех товаров в корзине
+  const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
   
 
   return (
@@ -42,11 +49,11 @@ export default function Drawer({ isOpen, products=[] }) {
           </h2>
 
           <div className={styles.cart__items}>
-            {products.map((product) => (
+            {cartItems.map((product) => (
               <div className={styles.cart__item} key={product.id}>
                 <Image
                   src={product.imgSrc}
-                  alt="Свеча"
+                  alt={product.name}
                   width={80}
                   height={80}
                   className={styles.cart__item_img}
@@ -72,7 +79,7 @@ export default function Drawer({ isOpen, products=[] }) {
               <li className={styles.cart__item__total_price}>
                 <span>Итого:</span>
                 <div className={styles.cart__total_ellipsis}></div>
-                <b>820₽</b>
+                <b>{totalAmount}₽</b>
               </li>
             </ul>
 
