@@ -3,7 +3,7 @@ import { CartContext } from "../components/CartContext/CartContext";
 import Card from "../components/Card/Card";
 import styles from "../styles/Catalog.module.css";
 import Image from "next/image";
-import GetProducts from "../components/GetProducts/GetProducts"
+import getProductsFromServer from "../components/GetProducts/GetProducts"
 
 
 export default function Catalog() {
@@ -15,25 +15,8 @@ export default function Catalog() {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    getProductsFromServer(); // Вызов для отрисовки данных
+    getProductsFromServer(setProducts); // Вызов для отрисовки данных
   }, []);
-
-  /**
-   * Функция для получения товаров из базы данных.
-   */
-  const getProductsFromServer = () => {
-    fetch("https://65d386d8522627d501091517.mockapi.io/products")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Ошибка при получении данных");
-        }
-        return response.json();
-      })
-      .then((data) => setProducts(data))
-      .catch((error) => {
-        console.error(error);
-      });
-  };
 
   // Функция для фильтрации продуктов по значению ввода
   const filterProducts = products.filter((product) =>
