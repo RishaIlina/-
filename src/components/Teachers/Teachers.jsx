@@ -1,6 +1,9 @@
 import styles from "../Teachers/Teachers.module.css";
 import Image from "next/image";
 
+/**
+ * Блок Наши учителя со страницы Наши курсы.
+ */
 export default function Teachers(props) {
   const { name, experience, imgSrc } = props.details;
   return (

@@ -32,13 +32,6 @@ export default function Courses() {
     },
   ];
 
-  // итерация по данным и отрисовка преподавателей
-  const teachersList =
-    initialTeachers.length > 0 &&
-    initialTeachers.map((teacher) => (
-      <Teachers key={teacher?.id} details={teacher} />
-    ));
-
   // данные карточки с курсами
   const initialCardCourses = [
     {
@@ -58,6 +51,13 @@ export default function Courses() {
       imgSrc: "/image/course-2.jpg",
     },
   ];
+
+  // итерация по данным и отрисовка преподавателей
+  const teachersList =
+    initialTeachers.length > 0 &&
+    initialTeachers.map((teacher) => (
+      <Teachers key={teacher?.id} details={teacher} />
+    ));
 
   // итерация по данным и отрисовка карточек с курсами
   const coursesList =
