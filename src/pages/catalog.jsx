@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
+import { CartContext } from "../components/CartContext/CartContext";
 import Card from "../components/Card/Card";
-import Header from "../components/Header/Header";
 import styles from "../styles/Catalog.module.css";
 import Image from "next/image";
-import Drawer from "../components/Drawer/Drawer";
-import { CartContext } from "../components/CartContext/CartContext";
+import GetProducts from "../components/GetProducts/GetProducts"
+
 
 export default function Catalog() {
   const { addItemToCart } = useContext(CartContext);
@@ -57,10 +57,6 @@ export default function Catalog() {
 
   return (
     <>
-      <Header>
-        <Drawer />
-      </Header>
-
       <section className="products">
         <div className={styles.products__top}>
           <h1 className={styles.products__top_title}>
