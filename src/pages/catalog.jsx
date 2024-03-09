@@ -1,25 +1,23 @@
-import styles from "../styles/Catalog.module.css";
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "../components/CartContext/CartContext";
+import styles from "../styles/Catalog.module.css";
 import Image from "next/image";
 import Card from "../components/Card/Card";
-import getProductsFromServer from "../components/GetProducts/GetProducts"
-
 
 export default function Catalog() {
-  const { addItemToCart } = useContext(CartContext);
-  
+  const { addItemToCart, getProductsFromServer, getProductsForCartFromServer, setCartItems  } = useContext(CartContext);
+
   // Стейт для отображения карточек
   const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProductsFromServer(setProducts); // Вызов для отрисовки данных
+    getProductsForCartFromServer(setCartItems); // Получение данных корзины с сервера
+  }, []);
 
   // Стейт для поиска  товара
   const [searchValue, setSearchValue] = useState("");
 
-  useEffect(() => {
-    getProductsFromServer(setProducts); // Вызов для отрисовки данных
-  }, []);
-
-  
   // Функция для фильтрации продуктов по значению ввода
   const filterProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -36,13 +34,14 @@ export default function Catalog() {
       />
     ));
 
-    const onChangeSearchInput = (event) => {
-      setSearchValue(event.target.value);
-    };
+  // функция отвечает за обновление значения ввода поиска
+  const onChangeSearchInput = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   return (
     <>
-    <section className="products">
+      <section className="products">
         <div className={styles.products__top}>
           <h1 className={styles.products__top_title}>
             {searchValue ? `Поиск по запросу: "${searchValue}"` : ""}
@@ -75,7 +74,7 @@ export default function Catalog() {
         </div>
 
         <div className={`container products_inner`}>{productList}</div>
-        </section>
-        </>
-  )
+      </section>
+    </>
+  );
 }
