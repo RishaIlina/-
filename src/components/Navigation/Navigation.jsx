@@ -1,28 +1,50 @@
-import Link from 'next/link'
+import { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-export default function Navigation() {
+/* пункты меню в шапке */
+const navItems = [
+  { name: "Главная", path: "/" },
+  { name: "Про нас", path: "/About" },
+  { name: "Каталог", path: "/Catalog" },
+  { name: "Отзывы", path: "/Reviews" },
+  { name: "Курсы", path: "/Courses" },
+];
+
+const Navigation = () => {
+  // состояние (стейт) для активного пункта меню
+  const [activeLink, setActiveLink] = useState("");
+
+  const router = useRouter();
+
+  // клик по активному пункту меню
+  const onClickHandler = (path) => {
+    if (path !== activeLink) {
+      router.push(path);
+      setActiveLink(path);
+    }
+  };
+
   return (
     <ul className="menu__list">
-      <li className="menu__list_item">
-        <Link legacyBehavior href="/About">
-          <a className="menu__list_link">Про нас</a>
-        </Link>
-      </li>
-      <li className="menu__list_item">
-        <Link legacyBehavior href="/Catalog">
-          <a className="menu__list_link">Каталог</a>
-        </Link>
-      </li>
-      <li className="menu__list_item">
-        <Link legacyBehavior href="/Reviews">
-          <a className="menu__list_link">Отзывы</a>
-        </Link>
-      </li>
-      <li className="menu__list_item">
-        <Link legacyBehavior href="/Courses">
-          <a className="menu__list_link">Курсы</a>
-        </Link>
-      </li>
+      {navItems.map((item) => (
+        <li key={item.path} className="menu__list_item">
+          <Link legacyBehavior href={item.path}>
+            <a
+              className={
+                item.path === router.pathname
+                  ? "menu__list_link active"
+                  : "menu__list_link"
+              }
+              onClick={() => onClickHandler(item.path)}
+            >
+              {item.name}
+            </a>
+          </Link>
+        </li>
+      ))}
     </ul>
   );
-}
+};
+
+export default Navigation;
