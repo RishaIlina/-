@@ -1,9 +1,28 @@
 import styles from "../styles/Courses.module.css";
-import Teachers from "../components/Teachers/Teachers";
 import CardCourses from "../components/CardCourses/CardCourses";
-
+import Teachers from "../components/Teachers/Teachers";
 
 export default function Courses() {
+  // данные карточки с курсами
+  const initialCardCourses = [
+    {
+      id: "1",
+      name: "Основы изготовления свечек",
+      time: "24 год",
+      price: "4000₽",
+      text: "Будем обучать основам изготовления свечей из разных материалов.",
+      imgSrc: "/image/course-1.jpg",
+    },
+    {
+      id: "2",
+      name: "Искусство ароматерапии",
+      time: "24 год",
+      price: "4000₽",
+      text: "Будем изучать искусство ароматерапии и изготовления свечей с разными ароматами.",
+      imgSrc: "/image/course-2.jpg",
+    },
+  ];
+
   // данные преподавателей
   const initialTeachers = [
     {
@@ -32,38 +51,18 @@ export default function Courses() {
     },
   ];
 
-  // данные карточки с курсами
-  const initialCardCourses = [
-    {
-      id: "1",
-      name: "Основы изготовления свечек",
-      time: "24 год",
-      price: "4000₽",
-      text: "Будем обучать основам изготовления свечей из разных материалов.",
-      imgSrc: "/image/course-1.jpg",
-    },
-    {
-      id: "2",
-      name: "Искусство ароматерапии",
-      time: "24 год",
-      price: "4000₽",
-      text: "Будем изучать искусство ароматерапии и изготовления свечей с разными ароматами.",
-      imgSrc: "/image/course-2.jpg",
-    },
-  ];
+  // итерация по данным и отрисовка карточек с курсами
+  const coursesList =
+    initialCardCourses.length > 0 &&
+    initialCardCourses.map((course) => (
+      <CardCourses key={course?.id} details={course} />
+    ));
 
   // итерация по данным и отрисовка преподавателей
   const teachersList =
     initialTeachers.length > 0 &&
     initialTeachers.map((teacher) => (
       <Teachers key={teacher?.id} details={teacher} />
-    ));
-
-  // итерация по данным и отрисовка карточек с курсами
-  const coursesList =
-    initialCardCourses.length > 0 &&
-    initialCardCourses.map((course) => (
-      <CardCourses key={course?.id} details={course} />
     ));
 
   return (
@@ -82,7 +81,7 @@ export default function Courses() {
           <div
             className={` ${styles.courses__content} products__content section__content_descr section__decor `}
           >
-              {coursesList}
+            {coursesList}
           </div>
         </div>
       </section>

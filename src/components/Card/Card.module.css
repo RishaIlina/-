@@ -5,6 +5,7 @@
     border-radius: 15px;
     transition: 0.2s ease-in-out, transform 0.2s ease-in-out;
     cursor: pointer;
+    margin-bottom: 30px;
 }
 
 .products__item_card:hover {
