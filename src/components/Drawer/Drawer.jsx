@@ -47,35 +47,35 @@ export default function Drawer({ isOpen }) {
             />
           </h2>
 
-          <div className={styles.cart__items}>
-            {cartItems.map((product) => (
-              <div className={styles.cart__item} key={product.id}>
-                <Image
-                  src={product.imgSrc}
-                  alt={product.name}
-                  width={80}
-                  height={80}
-                  className={styles.cart__item_img}
-                />
-                <div className={styles.cart__item_descr}>
-                  <p className={styles.cart__item_title}>{product.name}</p>
-                  <p className={styles.cart__item_price}>{product.price}</p>
-                </div>
-                <Image
-                  src="/image/btn-remove.svg"
-                  alt="Кнопка удаления товара"
-                  width={31}
-                  height={31}
-                  className={styles.cart__item_remove}
-                  onClick={() => removeItemFromCart(product.id)}
-                />
+          {cartItems.length > 0 ? (
+            <>
+              <div className={styles.cart__items}>
+                {cartItems.map((product) => (
+                  <div className={styles.cart__item} key={product.id}>
+                    <Image
+                      src={product.imgSrc}
+                      alt={product.name}
+                      width={80}
+                      height={80}
+                      className={styles.cart__item_img}
+                    />
+                    <div className={styles.cart__item_descr}>
+                      <p className={styles.cart__item_title}>{product.name}</p>
+                      <p className={styles.cart__item_price}>{product.price}</p>
+                    </div>
+                    <Image
+                      src="/image/btn-remove.svg"
+                      alt="Кнопка удаления товара"
+                      width={31}
+                      height={31}
+                      className={styles.cart__item_remove}
+                      onClick={() => removeItemFromCart(product.id)}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div className={styles.cart__total_block}>
-            {cartItems.length > 0 && (
-              <>
+              <div className={styles.cart__total_block}>
                 <ul>
                   <li className={styles.cart__item__total_price}>
                     <span>Итого:</span>
@@ -84,9 +84,7 @@ export default function Drawer({ isOpen }) {
                   </li>
                 </ul>
 
-                <button
-                  className={`${styles.button} ${styles.cart__total_btn}`}
-                >
+                <button className={` button ${styles.cart__total_btn}`}>
                   Оформить заказ
                   <Image
                     className={styles.cart__total_arrow}
@@ -96,9 +94,35 @@ export default function Drawer({ isOpen }) {
                     height={14}
                   />
                 </button>
-              </>
-            )}
-          </div>
+              </div>
+            </>
+          ) : (
+            <div className={styles.cart__empty}>
+              <Image
+                width={120}
+                height={120}
+                src="/image/empty-cart.jpg"
+                alt="Корзина"
+              />
+              <h2 className={styles.cart__empty_text}>Корзина пустая</h2>
+              <p className={styles.cart__empty_description}>
+                Добавьте хотя бы один товар, чтобы сделать заказ
+              </p>
+              <button
+                className={` button ${styles.cart__total_btn} ${styles.cart__empty_btn} `}
+                onClick={closeCartHandler}
+              >
+                <Image
+                  className={styles.cart__empty_arrow}
+                  width={16}
+                  height={14}
+                  src="/image/arrow.svg"
+                  alt="стрелка"
+                />{" "}
+                Вернуться назад
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>
