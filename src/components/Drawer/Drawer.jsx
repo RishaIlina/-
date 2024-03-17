@@ -22,9 +22,6 @@ export default function Drawer({ isOpen }) {
     isOpen(false); // Вызов функции из props для закрытия корзины в Header
   };
 
-  // Суммирование цен всех товаров в корзине
-  const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
-
   return (
     <div
       className={
@@ -61,7 +58,7 @@ export default function Drawer({ isOpen }) {
                     />
                     <div className={styles.cart__item_descr}>
                       <p className={styles.cart__item_title}>{product.name}</p>
-                      <p className={styles.cart__item_price}>{product.price}</p>
+                      <p className={styles.cart__item_price}>{parseInt(product.price, 10)} ₽</p>
                     </div>
                     <Image
                       src="/image/btn-remove.svg"
@@ -69,7 +66,7 @@ export default function Drawer({ isOpen }) {
                       width={31}
                       height={31}
                       className={styles.cart__item_remove}
-                      onClick={() => removeItemFromCart(product.id)}
+                      onClick={() =>  product.id && removeItemFromCart(product.id)}
                     />
                   </div>
                 ))}
@@ -80,7 +77,7 @@ export default function Drawer({ isOpen }) {
                   <li className={styles.cart__item__total_price}>
                     <span>Итого:</span>
                     <div className={styles.cart__total_ellipsis}></div>
-                    <b>{totalAmount}₽</b>
+                    <b>0 ₽</b>
                   </li>
                 </ul>
 
