@@ -5,7 +5,7 @@ import Image from "next/image";
 import Card from "../components/Card/Card";
 
 export default function Catalog() {
-  const { addItemToCart, getProductsFromServer, getProductsForCartFromServer, setCartItems  } = useContext(CartContext);
+  const { addItemToCart, getProductsFromServer, getProductsForCartFromServer, setCartItems } = useContext(CartContext);
 
   // Стейт для отображения карточек
   const [products, setProducts] = useState([]);
