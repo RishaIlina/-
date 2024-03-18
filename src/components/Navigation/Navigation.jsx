@@ -12,7 +12,7 @@ const navItems = [
 ];
 
 const Navigation = () => {
-  // состояние (стейт) для активного пункта меню
+  // состояние для активного пункта меню
   const [activeLink, setActiveLink] = useState("");
 
   const router = useRouter();
