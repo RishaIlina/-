@@ -7,9 +7,6 @@ const CartProvider = ({ children }) => {
   // Добавление товаров в корзину
   const [cartItems, setCartItems] = useState([]);
 
-  // Стейт для смены картинки
-  const [isAdded, setIsAdded] = useState(false);
-  
   // Получение товаров из базы данных.
   const getProductsFromServer = async (setProducts) => {
     try {
@@ -73,8 +70,6 @@ const CartProvider = ({ children }) => {
         getProductsFromServer,
         getProductsForCartFromServer,
         removeItemFromCart,
-        isAdded,
-        setIsAdded,
       }}
     >
       {children}

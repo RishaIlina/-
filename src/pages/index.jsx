@@ -1,5 +1,5 @@
 import Head from "next/head";
-import HomePage from "../components/HomePage/HomePage";
+import HomeDetails from "../components/HomeDetails/HomeDetails";
 
 /* Домашнаяя страница */
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <HomePage />
+      <HomeDetails />
     </>
   );
 };

@@ -1,0 +1,36 @@
+.feedback__item {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 0 16px;
+    align-items: center;
+}
+
+.feedback__item_image img{
+   object-fit: contain;
+}
+
+.feedback__item_sociallink img {
+    margin-bottom: 12px;
+}
+
+.feedback__item_name {
+    margin-bottom: 15px;
+    font-family: 'Yeseva One', cursive;
+    font-size: 16px;
+}
+
+.feedback__item_text {
+    margin-bottom: 15px;
+}
+
+.feedback__item_content {
+    padding-bottom: 70px;
+}
+
+.feedback__item_btn {
+    position: absolute;
+    font-family: 'Comfortaa', cursive;
+    margin-top: 50px;
+    right: 5px;
+    padding: 20px 35px;
+}
