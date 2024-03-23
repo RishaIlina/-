@@ -1,11 +1,11 @@
-import styles from "../HomePage/HomePage.module.css";
+import styles from "../HomeDetails/HomeDetails.module.css";
 import Image from "next/image";
 import StagesOfCreation from "../StagesOfCreation/StagesOfCreation";
 
 /**
  * Главная страница.
  */
-export default function HomePage() {
+export default function HomeDetails() {
   // данные об этапах изготовления свечей
   const initialStages = [
     {
