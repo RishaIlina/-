@@ -10,7 +10,7 @@ export default function Card(props) {
   const { name, imgSrc, price } = props.details;
 
   // Стейт для смены картинки
-  const [isAdded, setIsAdded] = useState(false);
+  const [isAdded, setIsAdded] = useState(props.isInCart);
 
   // Стейт для смены изображения избранных товаров
   const [isFavorite, setIsFavorite] = useState(false);
@@ -28,6 +28,7 @@ export default function Card(props) {
   const onClickFavorites = () => {
     setIsFavorite(!isFavorite);
   };
+
 
   return (
     <>
