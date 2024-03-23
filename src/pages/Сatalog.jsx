@@ -14,6 +14,9 @@ export default function Catalog() {
   // Стейт для отображения карточек
   const [products, setProducts] = useState([]);
 
+  // Стейт для отслеживания наличия товара в корзине
+  const [isInCart, setIsInCart] = useState(false);
+
   // Стейт для поиска товара
   const [searchValue, setSearchValue] = useState("");
 
@@ -49,6 +52,7 @@ export default function Catalog() {
   const addItem = (product) => {
     addItemToCart(product);
   };
+
 
   return (
     <>
@@ -118,6 +122,7 @@ export default function Catalog() {
                   key={product?.id}
                   details={product}
                   onClick={() => addItem(product)}
+                  isInCart={isInCart}
                   isLoading={isLoadingData}
                 />
               ))}
