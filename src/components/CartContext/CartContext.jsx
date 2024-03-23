@@ -31,6 +31,8 @@ const CartProvider = ({ children }) => {
       setCartItems((prev) =>
         prev.filter((item) => Number(item.id) !== Number(product.id))
       );
+      // изменяем переменную isInCart на true
+      setIsInCart(true);
     } else {
       // Если товар с таким id не найден в корзине, то отправляем данные на сервер и добавляем товар в корзину.
       axios.post("https://65d386d8522627d501091517.mockapi.io/cart", product);
