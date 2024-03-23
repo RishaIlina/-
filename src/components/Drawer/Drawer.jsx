@@ -14,9 +14,7 @@ export default function Drawer({ isOpen }) {
   // стейт для скрытия тени от корзины
   const [isOverlayOpen, setIsOverlayOpen] = useState(true);
 
-  /**
-   * Обработчик закрытия корзины.
-   */
+  // Обработчик закрытия корзины.
   const closeCartHandler = () => {
     setIsOverlayOpen(false);
     isOpen(false); // Вызов функции из props для закрытия корзины в Header
