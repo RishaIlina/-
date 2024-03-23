@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "../styles/Reviews.module.css";
 import FeedbackSlider from "../components/FeedbackSlider/FeedbackSlider";
 
@@ -14,38 +13,29 @@ export default function Reviews() {
       name: "Борис Ильин",
       text: "Я заказал свечу на День Святого Валентина для моей девушки и она была просто невероятна! Запах был очень приятным и романтичным. Моя девушка была очень довольна подарком, и я обязательно закажу ещё!",
     },
-    // {
-    //   id: "2",
-    //   imgSrc: "/image/feedback_1.jpg",
-    //   name: "Борис Ильин",
-    //   text: "Я заказал свечу на День Святого Валентина для моей девушки и она была просто невероятна! Запах был очень приятным и романтичным. Моя девушка была очень довольна подарком, и я обязательно закажу ещё!",
-    //   text_btn: "Купить этот товар",
-    // },
-    // {
-    //   id: "3",
-    //   imgSrc: "/image/feedback_3.jpg",
-    //   name: "Борис Ильин",
-    //   text: "Я заказал свечу на День Святого Валентина для моей девушки и она была просто невероятна! Запах был очень приятным и романтичным. Моя девушка была очень довольна подарком, и я обязательно закажу ещё!",
-    //   text_btn: "Купить этот товар",
-    // },
-    // {
-    //   id: "4",
-    //   imgSrc: "/image/feedback_4.jpg",
-    //   name: "Борис Ильин",
-    //   text: "Я заказал свечу на День Святого Валентина для моей девушки и она была просто невероятна! Запах был очень приятным и романтичным. Моя девушка была очень довольна подарком, и я обязательно закажу ещё!",
-    //   text_btn: "Купить этот товар",
-    // },
+    {
+      id: "2",
+      imgSrc: "/image/feedback_1.jpg",
+      name: "Наталья Вятчина",
+      text: "Мне очень понравились свечи из данного магазина. Они прекрасно держат форму и не дымят. Очень довольна покупкой!",
+    },
+    {
+      id: "3",
+      imgSrc: "/image/feedback_3.jpg",
+      name: "Елена Ершова",
+      text: "Свечи из этого магазина — просто находка! У них потрясающие ароматы, которые создают уют и комфорт в доме",
+    },
+    {
+      id: "4",
+      imgSrc: "/image/feedback_4.jpg",
+      name: "Влад Моисеев",
+      text: "Купил подарочный набор свечей для своей мамы на День Рождения. Она была в восторге! Отличное качество и красивая упаковка. Спасибо!",
+    },
   ];
 
-  // итерация по данным и отрисовка карточек с курсами
-  const feedbackList =
-    initialFeedback.length > 0 &&
-    initialFeedback.map((feedback) => (
-      <FeedbackSlider key={feedback?.id} details={feedback} />
-    ));
 
   return (
-    <section className={` ${styles.feedback} section pt_150`}>
+    <section className={` ${styles.feedback} section pt_150 pb_150 `}>
       <div className="container">
         <div className={` ${styles.feedback__inner} section__inner `}>
           <div className={` ${styles.feedback__descr} section__descr `}>
@@ -59,7 +49,7 @@ export default function Reviews() {
           </div>
 
           <div className={` ${styles.feedback__content} section__decor `}>
-           <FeedbackSlider />
+           <FeedbackSlider feedbackData={initialFeedback} />
           </div>
         </div>
       </div>
