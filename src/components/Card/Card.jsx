@@ -9,26 +9,29 @@ import { CartContext } from "../CartContext/CartContext";
 export default function Card(props) {
   const { name, imgSrc, price } = props.details;
 
-  // Стейт для смены картинки
-  const [isAdded, setIsAdded] = useState(props.isInCart);
+  // Стейт для добавления товара в корзину
+  const { addItemToCart, cartItems } = useContext(CartContext);
 
   // Стейт для смены изображения избранных товаров
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // Стейт для добавления товара в корзину
-  const { addItemToCart } = useContext(CartContext);
+  // Проверяем, добавлен ли товар в корзину
+  const isAdded = cartItems.some((item) => item.id === props.details.id);
 
-  // При клике на кнопку "Добавить товар в корзину" меняется значок и товар добавляется в корзину
   const onClickAddToCart = () => {
-    setIsAdded(!isAdded);
-    addItemToCart(props.details); // добавляем товар в корзину
+    // Если товар уже добавлен, вызывается логика удаления товара из корзины
+    if (isAdded) {
+      removeItemFromCart(props.details.id);
+    } else {
+      // Если товар еще не добавлен, вызывается функция добавления товара в корзину
+      addItemToCart(props.details);
+    }
   };
 
   // При клике на кнопку "Добавить в избранное" меняется значок и товар добавляется в избранное
   const onClickFavorites = () => {
     setIsFavorite(!isFavorite);
   };
-
 
   return (
     <>

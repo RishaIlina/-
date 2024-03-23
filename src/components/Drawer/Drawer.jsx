@@ -20,6 +20,10 @@ export default function Drawer({ isOpen }) {
     isOpen(false); // Вызов функции из props для закрытия корзины в Header
   };
 
+  const onClickRemoveItem = (id) => {
+    removeItemFromCart(id);
+  };
+
   return (
     <div
       className={
@@ -56,7 +60,9 @@ export default function Drawer({ isOpen }) {
                     />
                     <div className={styles.cart__item_descr}>
                       <p className={styles.cart__item_title}>{product.name}</p>
-                      <p className={styles.cart__item_price}>{parseInt(product.price, 10)} ₽</p>
+                      <p className={styles.cart__item_price}>
+                        {parseInt(product.price, 10)} ₽
+                      </p>
                     </div>
                     <Image
                       src="/image/btn-remove.svg"
@@ -64,7 +70,7 @@ export default function Drawer({ isOpen }) {
                       width={31}
                       height={31}
                       className={styles.cart__item_remove}
-                      onClick={() =>  product.id && removeItemFromCart(product.id)}
+                      onClick={() => onClickRemoveItem(product.id)}
                     />
                   </div>
                 ))}

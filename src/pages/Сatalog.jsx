@@ -8,14 +8,11 @@ import ContentLoader from "react-content-loader";
 export default function Catalog() {
   const {
     addItemToCart,
-    getProductsFromServer
+    getProductsFromServer,
   } = useContext(CartContext);
 
   // Стейт для отображения карточек
   const [products, setProducts] = useState([]);
-
-  // Стейт для отслеживания наличия товара в корзине
-  const [isInCart, setIsInCart] = useState(false);
 
   // Стейт для поиска товара
   const [searchValue, setSearchValue] = useState("");
@@ -34,6 +31,7 @@ export default function Catalog() {
 
       getProductsFromServer(setProducts)
         .then(() => setIsLoadingData(false)) // Устанавливаем состояние загрузки в false после получения данных
+        
         .catch((error) => {
           console.error("Ошибка при загрузке данных:", error);
           setIsLoadingData(false); // Устанавливаем состояние загрузки в false в случае ошибки
@@ -122,7 +120,6 @@ export default function Catalog() {
                   key={product?.id}
                   details={product}
                   onClick={() => addItem(product)}
-                  isInCart={isInCart}
                   isLoading={isLoadingData}
                 />
               ))}
