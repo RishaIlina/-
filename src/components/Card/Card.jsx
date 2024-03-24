@@ -7,10 +7,10 @@ import { CartContext } from "../CartContext/CartContext";
  * Компонент карточки товара.
  */
 export default function Card(props) {
-  const { name, imgSrc, price } = props.details;
+  const { id, name, imgSrc, price } = props.details;
 
   // Стейт для добавления товара в корзину
-  const { addItemToCart, cartItems } = useContext(CartContext);
+  const { addItemToCart, cartItems, removeItemFromCart } = useContext(CartContext);
 
   // Стейт для смены изображения избранных товаров
   const [isFavorite, setIsFavorite] = useState(false);

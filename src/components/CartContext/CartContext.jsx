@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import axios from "axios";
 
 const CartContext = createContext();
@@ -23,7 +23,7 @@ const CartProvider = ({ children }) => {
   const addItemToCart = (product) => {
     // Проверяем, есть ли товар с таким id уже в корзине
     if (cartItems.find((item) => Number(item.id) === Number(product.id))) {
-    // Удаляем товар с сервера
+      // Удаляем товар с сервера
       axios.delete(
         `https://65d386d8522627d501091517.mockapi.io/cart/${product.id}`
       );
@@ -39,13 +39,17 @@ const CartProvider = ({ children }) => {
   };
 
   // Получение товаров из базы данных, добавленных в корзину
-  const getProductsForCartFromServer = (setCartItems) => {
+  const getProductsForCartFromServer = () => {
     axios
       .get("https://65d386d8522627d501091517.mockapi.io/cart")
       .then((response) => {
         setCartItems(response.data);
       });
   };
+
+  useEffect(() => {
+    getProductsForCartFromServer();
+  }, []);
 
   // Удаление товара из корзины
   const removeItemFromCart = async (id) => {
@@ -54,7 +58,7 @@ const CartProvider = ({ children }) => {
       await axios.delete(
         `https://65d386d8522627d501091517.mockapi.io/cart/${id}`
       );
-      setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+      setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
     } catch (error) {
       console.error(error);
     }
