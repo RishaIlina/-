@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "../components/CartContext/CartContext";
 import styles from "../styles/Catalog.module.css";
@@ -5,11 +6,8 @@ import Image from "next/image";
 import Card from "../components/Card/Card";
 import ContentLoader from "react-content-loader";
 
-export default function Catalog() {
-  const {
-    addItemToCart,
-    getProductsFromServer,
-  } = useContext(CartContext);
+export default function About() {
+  const { addItemToCart, getProductsFromServer } = useContext(CartContext);
 
   // Стейт для отображения карточек
   const [products, setProducts] = useState([]);
@@ -31,7 +29,6 @@ export default function Catalog() {
 
       getProductsFromServer(setProducts)
         .then(() => setIsLoadingData(false)) // Устанавливаем состояние загрузки в false после получения данных
-        
         .catch((error) => {
           console.error("Ошибка при загрузке данных:", error);
           setIsLoadingData(false); // Устанавливаем состояние загрузки в false в случае ошибки
@@ -46,11 +43,10 @@ export default function Catalog() {
     setSearchValue(event.target.value);
   };
 
-  // Функция для добавления товара в корзину
-  const addItem = (product) => {
+   // Функция для добавления товара в корзину
+   const addItem = (product) => {
     addItemToCart(product);
   };
-
 
   return (
     <>
@@ -85,9 +81,10 @@ export default function Catalog() {
             </div>
           </div>
         </div>
+      </section>
 
-        <div className={`container products_inner`}>
-          {isLoadingData
+      <div className={`container products_inner`}>
+      {isLoadingData
             ? [...Array(10)].map((_, index) => (
                 <ContentLoader
                   key={index}
@@ -115,16 +112,15 @@ export default function Catalog() {
                   />
                 </ContentLoader>
               ))
-            : filterProducts.map((product) => (
-                <Card
-                  key={product?.id}
-                  details={product}
-                  onClick={() => addItem(product)}
-                  isLoading={isLoadingData}
-                />
-              ))}
-        </div>
-      </section>
+        : filterProducts.map((product) => (
+          <Card
+            key={product?.id}
+            details={product}
+            onClick={() => addItem(product)}
+            isLoading={isLoadingData}
+          />
+        ))}
+      </div>
     </>
   );
 }
