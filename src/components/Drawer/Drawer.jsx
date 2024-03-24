@@ -3,13 +3,32 @@ import { useState } from "react";
 import styles from "./Drawer.module.css";
 import Image from "next/image";
 import { CartContext } from "../CartContext/CartContext";
+import CartInfo from "../CartInfo/CartInfo";
+import axios from "axios";
 
 /**
  * Компонент корзины с товарами.
  * @param {Function} isOpen - Функция для открытия/закрытия корзины.
  */
 export default function Drawer({ isOpen }) {
-  const { cartItems, removeItemFromCart } = useContext(CartContext);
+  const { cartItems, setCartItems, removeItemFromCart } =
+    useContext(CartContext);
+
+  // стейт для отправки заказа в корзине
+  const [isOrderComplete, setIsOrderComplete] = useState(false);
+
+  const onClickOrder = async () => {
+    // заказ создан
+    setIsOrderComplete(true);
+    // очищаю массив корзины
+    setCartItems([]);
+    // удаляю товары с сервера
+    for (const product of cartItems) {
+      await axios.delete(
+        "https://65d386d8522627d501091517.mockapi.io/cart/" + product.id
+      );
+    }
+  };
 
   // стейт для скрытия тени от корзины
   const [isOverlayOpen, setIsOverlayOpen] = useState(true);
@@ -18,10 +37,6 @@ export default function Drawer({ isOpen }) {
   const closeCartHandler = () => {
     setIsOverlayOpen(false);
     isOpen(false); // Вызов функции из props для закрытия корзины в Header
-  };
-
-  const onClickRemoveItem = (id) => {
-    removeItemFromCart(id);
   };
 
   return (
@@ -70,7 +85,9 @@ export default function Drawer({ isOpen }) {
                       width={31}
                       height={31}
                       className={styles.cart__item_remove}
-                      onClick={() => onClickRemoveItem(product.id)}
+                      onClick={() =>
+                        product.id && removeItemFromCart(product.id)
+                      }
                     />
                   </div>
                 ))}
@@ -85,7 +102,10 @@ export default function Drawer({ isOpen }) {
                   </li>
                 </ul>
 
-                <button className={` button ${styles.cart__total_btn}`}>
+                <button
+                  onClick={onClickOrder}
+                  className={` button ${styles.cart__total_btn}`}
+                >
                   Оформить заказ
                   <Image
                     className={styles.cart__total_arrow}
@@ -98,31 +118,20 @@ export default function Drawer({ isOpen }) {
               </div>
             </>
           ) : (
-            <div className={styles.cart__empty}>
-              <Image
-                width={120}
-                height={120}
-                src="/image/empty-cart.jpg"
-                alt="Корзина"
-              />
-              <h2 className={styles.cart__empty_text}>Корзина пустая</h2>
-              <p className={styles.cart__empty_description}>
-                Добавьте хотя бы один товар, чтобы сделать заказ
-              </p>
-              <button
-                className={` button ${styles.cart__total_btn} ${styles.cart__empty_btn} `}
-                onClick={closeCartHandler}
-              >
-                <Image
-                  className={styles.cart__empty_arrow}
-                  width={16}
-                  height={14}
-                  src="/image/arrow.svg"
-                  alt="стрелка"
-                />{" "}
-                Вернуться назад
-              </button>
-            </div>
+            <CartInfo
+              imgSrc={
+                isOrderComplete
+                  ? "/image/complete-order.jpg"
+                  : "/image/empty-cart.jpg"
+              }
+              text={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
+              description={
+                isOrderComplete
+                  ? "В ближайшее время с вами свяжется наш менеджер для уточнения информации по заказу"
+                  : "Добавьте хотя бы один товар, чтобы сделать заказ"
+              }
+              closeCartHandler={closeCartHandler}
+            />
           )}
         </div>
       )}
