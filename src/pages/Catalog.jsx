@@ -6,7 +6,7 @@ import Image from "next/image";
 import Card from "../components/Card/Card";
 import ContentLoader from "react-content-loader";
 
-export default function About() {
+export default function Catalog() {
   const { addItemToCart, getProductsFromServer } = useContext(CartContext);
 
   // Стейт для отображения карточек
