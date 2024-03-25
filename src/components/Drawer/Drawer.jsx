@@ -14,6 +14,12 @@ export default function Drawer({ isOpen }) {
   const { cartItems, setCartItems, removeItemFromCart } =
     useContext(CartContext);
 
+  // считаем сумму всех товаров в корзине
+  const totalPrice = cartItems.reduce(
+    (sum, product) => Number(product.price) + sum,
+    0
+  );
+
   // стейт для отправки заказа в корзине
   const [isOrderComplete, setIsOrderComplete] = useState(false);
 
@@ -96,9 +102,16 @@ export default function Drawer({ isOpen }) {
               <div className={styles.cart__total_block}>
                 <ul>
                   <li className={styles.cart__item__total_price}>
+                    <span>Доставка:</span>
+                    <div className={styles.cart__total_ellipsis}></div>
+                    <b>500 ₽</b>
+                  </li>
+                </ul>
+                <ul>
+                  <li className={styles.cart__item__total_price}>
                     <span>Итого:</span>
                     <div className={styles.cart__total_ellipsis}></div>
-                    <b>0 ₽</b>
+                    <b>{totalPrice + 500} ₽</b>
                   </li>
                 </ul>
 

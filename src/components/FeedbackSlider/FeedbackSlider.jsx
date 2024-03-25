@@ -36,6 +36,14 @@ export default function FeedbackSlider({ feedbackData }) {
       modules={[Pagination, Navigation]}
       onSwiper={setSwiper}
       className={styles.main__swiper}
+      style={{
+        "--swiper-pagination-color": "#BEA495",
+        "--swiper-pagination-bullet-inactive-color": "#7B6152",
+        "--swiper-pagination-bullet-inactive-opacity": "1",
+        "--swiper-pagination-bullet-width": "53px",
+        "--swiper-pagination-bullet-height": "4px",
+        "--swiper-pagination-bullet-border-radius": "0px",
+      }}
     >
       {feedbackData.map((feedback) => (
         <SwiperSlide key={feedback.id}>

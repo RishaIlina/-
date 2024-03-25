@@ -84,6 +84,7 @@
 .cart__item__total_price {
     display: flex;
     align-items: flex-end;
+    margin-bottom: 15px;
 }
 
 .cart__total_ellipsis {
