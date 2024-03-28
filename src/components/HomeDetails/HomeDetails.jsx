@@ -1,6 +1,7 @@
 import styles from "../HomeDetails/HomeDetails.module.css";
 import Image from "next/image";
 import StagesOfCreation from "../StagesOfCreation/StagesOfCreation";
+import Link from "next/link";
 
 /**
  * Главная страница.
@@ -64,6 +65,7 @@ export default function HomeDetails() {
     initialStages.map((stage) => (
       <StagesOfCreation key={stage?.id} details={stage} />
     ));
+
   return (
     <>
       <main className={styles.main}>
@@ -78,7 +80,11 @@ export default function HomeDetails() {
                 чистой и качественной продукцией из 100% натурального соевого
                 воска.
               </p>
-              <button className={styles.top__btn}>К покупкам!</button>
+              <button className={styles.top__btn}>
+                <Link legacyBehavior href="/Catalog">
+                  <a>К покупкам!</a>
+                </Link>
+              </button>
               <picture className={styles.top__img}>
                 <source
                   srcSet="image/top-s.png"
