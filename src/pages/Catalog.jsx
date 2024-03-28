@@ -116,7 +116,7 @@ export default function Catalog() {
           <Card
             key={product?.id}
             details={product}
-            onClick={() => addItem(product)}
+            onClick={() => addItem({ ...product, parentId: product.id })}
             isLoading={isLoadingData}
           />
         ))}
