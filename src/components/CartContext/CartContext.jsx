@@ -21,23 +21,46 @@ const CartProvider = ({ children }) => {
 
   // Отправка данных из корзины на сервер
   const addItemToCart = (product) => {
-    // Проверяем, есть ли товар с таким id уже в корзине
-    if (cartItems.find((item) => Number(item.id) === Number(product.id))) {
-      // Удаляем товар с сервера
-      axios.delete(
-        `https://65d386d8522627d501091517.mockapi.io/cart/${product.id}`
+    try {
+      const findItem = cartItems.find(
+        (item) => Number(item.parentId) === Number(product.id)
       );
-      // Если товар с таким id уже существует в корзине, то удаляем его из корзины.
-      setCartItems((prev) =>
-        prev.filter((item) => Number(item.id) !== Number(product.id))
-      );
-    } else {
-      // Если товар с таким id не найден в корзине, то отправляем данные на сервер и добавляем товар в корзину.
-      axios.post("https://65d386d8522627d501091517.mockapi.io/cart", product);
-      setCartItems((prev) => [...prev, product]);
+
+      // Проверяем, есть ли товар с таким id уже в корзине
+      if (findItem) {
+        // Удаляем товар с сервера
+        axios
+          .delete(
+            `https://65d386d8522627d501091517.mockapi.io/cart/${findItem.id}`
+          )
+
+          .then(() => {
+            // Если удаление успешно, удаляем товар из состояния корзины
+            setCartItems((prev) =>
+              prev.filter(
+                (item) => Number(item.parentId) !== Number(product.id)
+              )
+            );
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else {
+        // Если товар с таким id не найден в корзине, то отправляем данные на сервер и добавляем товар в корзину.
+        axios
+          .post("https://65d386d8522627d501091517.mockapi.io/cart", product)
+          .then(({ data }) => {
+            setCartItems((prev) => [...prev, data]);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
-
+  
   // Получение товаров из базы данных, добавленных в корзину
   const getProductsForCartFromServer = () => {
     axios
@@ -58,7 +81,9 @@ const CartProvider = ({ children }) => {
       await axios.delete(
         `https://65d386d8522627d501091517.mockapi.io/cart/${id}`
       );
-      setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+      setCartItems((prevItems) =>
+        prevItems.filter((item) => Number(item.id) !== Number(id))
+      );
     } catch (error) {
       console.error(error);
     }

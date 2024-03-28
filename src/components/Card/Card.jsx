@@ -10,21 +10,26 @@ export default function Card(props) {
   const { name, imgSrc, price } = props.details;
 
   // Стейт для добавления товара в корзину
-  const { addItemToCart, cartItems, removeItemFromCart } = useContext(CartContext);
+  const { addItemToCart, cartItems, removeItemFromCart } =
+    useContext(CartContext);
 
   // Стейт для смены изображения избранных товаров
   const [isFavorite, setIsFavorite] = useState(false);
 
   // Проверяем, добавлен ли товар в корзину
-  const isAdded = cartItems.some((item) => item.id === props.details.id);
+  const isAdded = cartItems.some((item) => item.parentId === props.details.id);
 
   const onClickAddToCart = () => {
     // Если товар уже добавлен, вызывается логика удаления товара из корзины
     if (isAdded) {
-      removeItemFromCart(props.details.id);
+      // Получаем id товара, который нужно удалить
+      const itemToRemoveId = cartItems.find(
+        (item) => item.parentId === props.details.id
+      ).id;
+      removeItemFromCart(itemToRemoveId);
     } else {
       // Если товар еще не добавлен, вызывается функция добавления товара в корзину
-      addItemToCart(props.details);
+      addItemToCart({ ...props.details, parentId: props.details.id });
     }
   };
 
