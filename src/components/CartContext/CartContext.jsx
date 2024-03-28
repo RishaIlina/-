@@ -77,7 +77,6 @@ const CartProvider = ({ children }) => {
   // Удаление товара из корзины
   const removeItemFromCart = async (id) => {
     try {
-      console.log(`Пытаемся удалить товар с id: ${id}`);
       await axios.delete(
         `https://65d386d8522627d501091517.mockapi.io/cart/${id}`
       );

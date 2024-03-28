@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useState } from "react";
+import { CartContext } from "../CartContext/CartContext";
 import styles from "./Drawer.module.css";
 import Image from "next/image";
-import { CartContext } from "../CartContext/CartContext";
 import CartInfo from "../CartInfo/CartInfo";
 import axios from "axios";
 

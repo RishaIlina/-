@@ -1,7 +1,8 @@
-import styles from "./Card.module.css";
-import Image from "next/image";
 import { useContext, useState } from "react";
 import { CartContext } from "../CartContext/CartContext";
+import styles from "./Card.module.css";
+import Image from "next/image";
+
 
 /**
  * Компонент карточки товара.
