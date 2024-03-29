@@ -6,6 +6,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { useRouter } from "next/router";
 
 
 /**
@@ -23,6 +24,8 @@ export default function FeedbackSlider({ feedbackData }) {
 
     return () => clearTimeout(sliderTimer);
   }, [swiper]);
+
+  const router = useRouter();
 
 
   return (
@@ -69,7 +72,7 @@ export default function FeedbackSlider({ feedbackData }) {
                 </a>
                 <p className={styles.feedback__item_name}>{feedback.name}</p>
                 <p className={styles.feedback__item_text}>{feedback.text}</p>
-                <button className={` button ${styles.feedback__item_btn} `}>
+                <button  onClick = {() => router.push("/Catalog")} className={` button ${styles.feedback__item_btn} `}>
                   Купить этот товар
                 </button>
               </div>
