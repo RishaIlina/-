@@ -61,7 +61,7 @@ export default function FeedbackSlider({ feedbackData }) {
                 />
               </div>
               <div className={styles.feedback__item_content}>
-                <a href="#" className={styles.feedback__item_sociallink}>
+                <a href="https://www.instagram.com/" className={styles.feedback__item_sociallink}>
                   <Image
                     width={22}
                     height={22}
