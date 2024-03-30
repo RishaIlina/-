@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
+import { useRouter } from "next/router";
 
 const Header = () => {
   // стейт для открытия корзины
@@ -20,6 +21,8 @@ const Header = () => {
   const toggleRegistrationForm = () => {
     setRegistrationFormOpened(!registrationFormOpened);
   };
+
+  const router = useRouter();
 
 
   return (
@@ -55,7 +58,7 @@ const Header = () => {
             <button id="open_basket" className="btn_icon" onClick={toggleCart}>
               <Image width={23} height={23} alt="logo" src="image/basket.svg" />
             </button>
-            <button className="btn_icon">
+            <button className="btn_icon"  onClick = {() => router.push("/Favourites")}>
               <Image width={23} height={23} alt="logo" src="image/heart.svg" />
             </button>
             <button className="btn_icon" onClick={toggleRegistrationForm}>

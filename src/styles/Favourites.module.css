@@ -1,0 +1,10 @@
+.products__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.products__top_title {
+    padding: 40px;
+    font-size: 30px;
+}

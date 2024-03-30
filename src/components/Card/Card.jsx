@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../CartContext/CartContext";
 import styles from "./Card.module.css";
 import Image from "next/image";
-
 
 /**
  * Компонент карточки товара.
@@ -10,12 +9,10 @@ import Image from "next/image";
 export default function Card(props) {
   const { name, imgSrc, price } = props.details;
 
-  // Стейт для добавления товара в корзину
-  const { addItemToCart, cartItems, removeItemFromCart } =
-    useContext(CartContext);
+  const { addItemToCart, cartItems, setProducts, removeItemFromCart, } = useContext(CartContext);
 
   // Стейт для смены изображения избранных товаров
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(props.isFavorite);
 
   // Проверяем, добавлен ли товар в корзину
   const isAdded = cartItems.some((item) => item.parentId === props.details.id);
@@ -34,9 +31,21 @@ export default function Card(props) {
     }
   };
 
-  // При клике на кнопку "Добавить в избранное" меняется значок и товар добавляется в избранное
-  const onClickFavorites = () => {
-    setIsFavorite(!isFavorite);
+  const onClickFavourites = () => {
+    const productId = props.details.id;
+    const newIsFavourite = !isFavourite;
+    setIsFavourite(newIsFavourite); // Изменение состояния сердца
+    props.addToFavourites(productId);
+
+    // Обновление состояния товаров в списке
+    setProducts((prevProducts) =>
+      prevProducts.map((product) => {
+        if (product.id === productId) {
+          return { ...product, isFavourite: newIsFavourite };
+        }
+        return product;
+      })
+    );
   };
 
   return (
@@ -54,16 +63,16 @@ export default function Card(props) {
             <p>{name}</p>
             <div
               className={`${styles.favorite} ${
-                isFavorite ? styles.favorite_active : ""
+                isFavourite ? styles.favorite_active : ""
               }`}
-              onClick={onClickFavorites}
+              onClick={onClickFavourites}
             >
               <Image
-                width={isFavorite ? 25 : 17}
-                height={isFavorite ? 25 : 17}
-                src={isFavorite ? "/image/liked.svg" : "/image/heart.svg"}
+                width={isFavourite ? 25 : 17}
+                height={isFavourite ? 25 : 17}
+                src={isFavourite ? "/image/liked.svg" : "/image/heart.svg"}
                 alt={
-                  isFavorite
+                  isFavourite
                     ? "Изображение сердца лайкнутое"
                     : "Изображение сердца не лайкнутое"
                 }

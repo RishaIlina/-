@@ -6,10 +6,13 @@ import styles from "../styles/Catalog.module.css";
 import Card from "../components/Card/Card";
 
 export default function Catalog() {
-  const { addItemToCart, getProductsFromServer } = useContext(CartContext);
-
-  // Стейт для отображения карточек
-  const [products, setProducts] = useState([]);
+  const {
+    products,
+    setProducts,
+    addItemToCart,
+    getProductsFromServer,
+    addToFavourites,
+  } = useContext(CartContext);
 
   // Стейт для поиска товара
   const [searchValue, setSearchValue] = useState("");
@@ -110,6 +113,8 @@ export default function Catalog() {
                 details={product}
                 onClick={() => addItem({ ...product, parentId: product.id })}
                 isLoading={isLoadingData}
+                addToFavourites={addToFavourites}
+                isFavorite={product.isFavourite}
               />
             ))}
       </div>
