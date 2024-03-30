@@ -4,8 +4,14 @@ import axios from "axios";
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  // Добавление товаров в корзину
+  // Стейт для отображения карточек
+  const [products, setProducts] = useState([]);
+
+  // Состояние для товаров в корзине
   const [cartItems, setCartItems] = useState([]);
+
+  // Состояние для избранных товаров
+  const [favouriteItems, setFavouriteItems] = useState([]);
 
   // Получение товаров из базы данных.
   const getProductsFromServer = async (setProducts) => {
@@ -13,7 +19,11 @@ const CartProvider = ({ children }) => {
       const response = await axios.get(
         "https://65d386d8522627d501091517.mockapi.io/products"
       );
-      setProducts(response.data);
+      const updatedProducts = response.data.map((product) => ({
+        ...product,
+        isFavourite: favouriteItems.includes(product.id),
+      }));
+      setProducts(updatedProducts);
     } catch (error) {
       console.error(error);
     }
@@ -60,7 +70,7 @@ const CartProvider = ({ children }) => {
       console.error(error);
     }
   };
-  
+
   // Получение товаров из базы данных, добавленных в корзину
   const getProductsForCartFromServer = () => {
     axios
@@ -72,6 +82,10 @@ const CartProvider = ({ children }) => {
 
   useEffect(() => {
     getProductsForCartFromServer();
+    const savedFavourites = localStorage.getItem("favouriteItems");
+    if (savedFavourites) {
+      setFavouriteItems(JSON.parse(savedFavourites));
+    }
   }, []);
 
   // Удаление товара из корзины
@@ -88,15 +102,26 @@ const CartProvider = ({ children }) => {
     }
   };
 
+  // Функция для добавления товара в избранное
+  const addToFavourites = (productId) => {
+    const updatedFavourites = [...favouriteItems, productId];
+    setFavouriteItems(updatedFavourites);
+    localStorage.setItem("favouriteItems", JSON.stringify(updatedFavourites));
+  };
+
   return (
     <CartContext.Provider
       value={{
+        setProducts,
+        products,
         cartItems,
         setCartItems,
         addItemToCart,
         getProductsFromServer,
         getProductsForCartFromServer,
         removeItemFromCart,
+        favouriteItems,
+        addToFavourites,
       }}
     >
       {children}
