@@ -5,6 +5,9 @@ import ContentLoader from "react-content-loader";
 import styles from "../styles/Catalog.module.css";
 import Card from "../components/Card/Card";
 
+/**
+ * Страница с каталогом товаров.
+ */
 export default function Catalog() {
   const {
     products,

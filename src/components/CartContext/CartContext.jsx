@@ -13,14 +13,15 @@ const CartProvider = ({ children }) => {
   // Состояние для избранных товаров
   const [favouriteItems, setFavouriteItems] = useState([]);
 
-  // Получение товаров из базы данных.
-  const getProductsFromServer = async (setProducts) => {
+  // Получение товаров из базы данных 
+  const getProductsFromServer = async () => {
     try {
       const response = await axios.get(
         "https://65d386d8522627d501091517.mockapi.io/products"
       );
       const updatedProducts = response.data.map((product) => ({
         ...product,
+        // Проверяем, есть ли товар в избранном
         isFavourite: favouriteItems.includes(product.id),
       }));
       setProducts(updatedProducts);
@@ -80,8 +81,11 @@ const CartProvider = ({ children }) => {
       });
   };
 
+  // Загрузка товаров из корзины
   useEffect(() => {
     getProductsForCartFromServer();
+    
+    // При загрузке страницы получаем избранные товары из local storage
     const savedFavourites = localStorage.getItem("favouriteItems");
     if (savedFavourites) {
       setFavouriteItems(JSON.parse(savedFavourites));
@@ -108,6 +112,11 @@ const CartProvider = ({ children }) => {
     setFavouriteItems(updatedFavourites);
     localStorage.setItem("favouriteItems", JSON.stringify(updatedFavourites));
   };
+
+  // Операции с избранными товарами обновляются в local storage
+  useEffect(() => {
+    localStorage.setItem("favouriteItems", JSON.stringify(favouriteItems));
+  }, [favouriteItems]);
 
   return (
     <CartContext.Provider

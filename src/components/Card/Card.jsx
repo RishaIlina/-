@@ -9,10 +9,18 @@ import Image from "next/image";
 export default function Card(props) {
   const { name, imgSrc, price } = props.details;
 
-  const { addItemToCart, cartItems, setProducts, removeItemFromCart, } = useContext(CartContext);
+  const {
+    addItemToCart,
+    cartItems,
+    removeItemFromCart,
+    addToFavourites,
+    favouriteItems,
+  } = useContext(CartContext);
 
   // Стейт для смены изображения избранных товаров
-  const [isFavourite, setIsFavourite] = useState(props.isFavorite);
+  const [isFavourite, setIsFavourite] = useState(
+    favouriteItems.includes(props.details.id)
+  );
 
   // Проверяем, добавлен ли товар в корзину
   const isAdded = cartItems.some((item) => item.parentId === props.details.id);
@@ -31,21 +39,13 @@ export default function Card(props) {
     }
   };
 
+  useEffect(() => {
+    setIsFavourite(favouriteItems.includes(props.details.id));
+  }, [favouriteItems, props.details.id]);
+
   const onClickFavourites = () => {
     const productId = props.details.id;
-    const newIsFavourite = !isFavourite;
-    setIsFavourite(newIsFavourite); // Изменение состояния сердца
-    props.addToFavourites(productId);
-
-    // Обновление состояния товаров в списке
-    setProducts((prevProducts) =>
-      prevProducts.map((product) => {
-        if (product.id === productId) {
-          return { ...product, isFavourite: newIsFavourite };
-        }
-        return product;
-      })
-    );
+    addToFavourites(productId);
   };
 
   return (
