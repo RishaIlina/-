@@ -71,6 +71,24 @@
     font-weight: 600;
 }
 
+.cart_counter {
+    display: flex;
+    align-items: center;
+  }
+  
+  .counter_button {
+    background-color: #f7f7f7;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .counter_value {
+    margin: 0 10px;
+  }
+
 .cart__item_remove {
     opacity: 0.5;
     transition: opacity 0.15s ease-in-out;
