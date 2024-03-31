@@ -14,21 +14,45 @@ export default function Drawer({ isOpen }) {
   const { cartItems, setCartItems, removeItemFromCart } =
     useContext(CartContext);
 
+ // Подсчет количества добавленного товара
+  const [count, setCount] = useState(1);
+
+  // стейт для скрытия тени от корзины
+  const [isOverlayOpen, setIsOverlayOpen] = useState(true);
+
+  // стейт для отправки заказа в корзине
+  const [isOrderComplete, setIsOrderComplete] = useState(false);
+
+  // const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+
+  const handleDecrement = () => {
+    setCount(count - 1);
+  };
+
+  // Стоимость доставки
+  const shippingCost = 500;
+
   // считаем сумму всех товаров в корзине
   const totalPrice = cartItems.reduce(
     (sum, product) => Number(product.price) + sum,
     0
   );
 
-  // стейт для отправки заказа в корзине
-  const [isOrderComplete, setIsOrderComplete] = useState(false);
+  // Итоговая стоимость, с учетом доставки
+  const totalWithShipping = totalPrice + shippingCost;
 
   const onClickOrder = async () => {
+    // Если форма видима - не отправляем заказ
+    // if (isFormVisible) return;
     // заказ создан
     setIsOrderComplete(true);
-    // очищаю массив корзины
+    // очищаем массив корзины
     setCartItems([]);
-    // удаляю товары с сервера
+    // удаляем товары с сервера
     for (const product of cartItems) {
       await axios.delete(
         "https://65d386d8522627d501091517.mockapi.io/cart/" + product.id
@@ -36,13 +60,10 @@ export default function Drawer({ isOpen }) {
     }
   };
 
-  // стейт для скрытия тени от корзины
-  const [isOverlayOpen, setIsOverlayOpen] = useState(true);
-
   // Обработчик закрытия корзины.
   const closeCartHandler = () => {
     setIsOverlayOpen(false);
-    isOpen(false); // Вызов функции из props для закрытия корзины в Header
+    isOpen(false);
   };
 
   return (
@@ -75,8 +96,8 @@ export default function Drawer({ isOpen }) {
                     <Image
                       src={product.imgSrc}
                       alt={product.name}
-                      width={80}
-                      height={80}
+                      width={90}
+                      height={90}
                       className={styles.cart__item_img}
                     />
                     <div className={styles.cart__item_descr}>
@@ -84,7 +105,25 @@ export default function Drawer({ isOpen }) {
                       <p className={styles.cart__item_price}>
                         {parseInt(product.price, 10)} ₽
                       </p>
+                      <div className={styles.cart__counter}>
+                        <button
+                           onClick={handleDecrement}
+                           disabled={count === 1}
+                          className={styles.counter_button}
+                        >
+                          -
+                        </button>
+                        {count > 0 && <span className={styles.counter_value}>{count}</span>}
+                        <button
+                          onClick={handleIncrement}
+                          disabled={count > 10}
+                          className={styles.counter_button}
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
+
                     <Image
                       src="/image/btn-remove.svg"
                       alt="Кнопка удаления товара"
@@ -104,14 +143,14 @@ export default function Drawer({ isOpen }) {
                   <li className={styles.cart__item__total_price}>
                     <span>Доставка:</span>
                     <div className={styles.cart__total_ellipsis}></div>
-                    <b>500 ₽</b>
+                    <b>{shippingCost} ₽</b>
                   </li>
                 </ul>
                 <ul>
                   <li className={styles.cart__item__total_price}>
                     <span>Итого:</span>
                     <div className={styles.cart__total_ellipsis}></div>
-                    <b>{totalPrice + 500} ₽</b>
+                    <b>{totalWithShipping} ₽</b>
                   </li>
                 </ul>
 
