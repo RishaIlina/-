@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { CartContext } from "../components/CartContext/CartContext";
 import Card from "../components/Card/Card";
 import styles from "../styles/Favourites.module.css";
@@ -7,14 +7,23 @@ import styles from "../styles/Favourites.module.css";
  * Страница с избранными товарами.
  */
 export default function Favourites() {
-  const { products, favouriteItems } = useContext(CartContext);
+  const { products, getProductsFromServer, favouriteItems } =
+    useContext(CartContext);
 
-  const [favouriteProducts, setFavouriteProducts] = useState([]);
+  console.log("продукты в favourits:", products);
+  console.log("избранные в favourits:", favouriteItems);
 
-  // Обновляем список избранных товаров
   useEffect(() => {
-    setFavouriteProducts(products.filter((product) => favouriteItems.includes(product.id)));
-  }, [products, favouriteItems]);
+    // Если избранные товары еще не загружены, получаем их с сервера
+    if (!products.length) {
+      getProductsFromServer();
+    }
+  }, []);
+
+  // Фильтруем избранные товары из общего списка товаров
+  const favouriteProducts = products.filter((product) =>
+    favouriteItems.includes(product.id)
+  );
 
   return (
     <section className="favourites">
