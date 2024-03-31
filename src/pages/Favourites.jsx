@@ -7,7 +7,7 @@ import styles from "../styles/Favourites.module.css";
  * Страница с избранными товарами.
  */
 export default function Favourites() {
-  const { products, getProductsFromServer, favouriteItems } =
+  const { products, getProductsFromServer, favouriteItems, removeFromFavourites } =
     useContext(CartContext);
 
   console.log("продукты в favourits:", products);
@@ -38,6 +38,7 @@ export default function Favourites() {
             details={product}
             onClick={() => addItem({ ...product, parentId: product.id })}
              isFavorite={product.isFavourite}
+             removeFromFavourites={removeFromFavourites}
           />
         ))}
       </div>

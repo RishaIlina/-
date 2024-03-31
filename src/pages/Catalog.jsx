@@ -114,7 +114,10 @@ export default function Catalog() {
               <Card
                 key={product?.id}
                 details={product}
-                onClick={() => addItem({ ...product, parentId: product.id })}
+                onClick={() => {
+                  addItem({ ...product, parentId: product.id });
+                  onClickFavourites();
+                }}
                 isLoading={isLoadingData}
                 addToFavourites={addToFavourites}
                 isFavorite={product.isFavourite}

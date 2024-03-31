@@ -113,6 +113,13 @@ const CartProvider = ({ children }) => {
     localStorage.setItem("favouriteItems", JSON.stringify(updatedFavourites));
   };
 
+  // Функция удаления товара из избранного
+  const removeFromFavourites = (productId) => {
+    const updatedFavourites = favouriteItems.filter((item) => item !== productId);
+    setFavouriteItems(updatedFavourites);
+    localStorage.setItem("favouriteItems", JSON.stringify(updatedFavourites));
+  };  
+
   // Операции с избранными товарами обновляются в local storage
   useEffect(() => {
     localStorage.setItem("favouriteItems", JSON.stringify(favouriteItems));
@@ -131,6 +138,7 @@ const CartProvider = ({ children }) => {
         removeItemFromCart,
         favouriteItems,
         addToFavourites,
+        removeFromFavourites,
       }}
     >
       {children}

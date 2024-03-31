@@ -15,6 +15,7 @@ export default function Card(props) {
     removeItemFromCart,
     addToFavourites,
     favouriteItems,
+    removeFromFavourites,
   } = useContext(CartContext);
 
   // Стейт для смены изображения избранных товаров
@@ -45,7 +46,11 @@ export default function Card(props) {
 
   const onClickFavourites = () => {
     const productId = props.details.id;
-    addToFavourites(productId);
+    if (isFavourite) {
+      removeFromFavourites(productId);
+    } else {
+      addToFavourites(productId);
+    }
   };
 
   return (
