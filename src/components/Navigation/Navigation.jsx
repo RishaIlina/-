@@ -5,11 +5,9 @@ import Link from "next/link";
 /* пункты меню в шапке */
 const navItems = [
   { name: "Главная", path: "/" },
-  { name: "Про нас", path: "/About" },
   { name: "Каталог", path: "/Catalog" },
   { name: "Отзывы", path: "/Reviews" },
   { name: "Курсы", path: "/Courses" },
-  { name: "Избранное", path: "/Favourites" },
 ];
 
 const Navigation = () => {

@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
-import { useRouter } from "next/router";
 
 const Header = () => {
   // стейт для открытия корзины
@@ -22,13 +21,12 @@ const Header = () => {
     setRegistrationFormOpened(!registrationFormOpened);
   };
 
-  const router = useRouter();
-
-
   return (
     <>
-      {cartOpened && <Drawer isOpen={toggleCart}/>}
-      {registrationFormOpened && <RegistrationForm isOpen={toggleRegistrationForm} />}
+      {cartOpened && <Drawer isOpen={toggleCart} />}
+      {registrationFormOpened && (
+        <RegistrationForm isOpen={toggleRegistrationForm} />
+      )}
       <header className={styles.header}>
         <div className={`container ${styles.header__inner}`}>
           <Link legacyBehavior href="/">
@@ -58,11 +56,19 @@ const Header = () => {
             <button id="open_basket" className="btn_icon" onClick={toggleCart}>
               <Image width={23} height={23} alt="logo" src="image/basket.svg" />
             </button>
-            <button className="btn_icon"  onClick = {() => router.push("/Favourites")}>
-              <Image width={23} height={23} alt="logo" src="image/heart.svg" />
-            </button>
+            <Link legacyBehavior href="/Favourites">
+              <a className="btn_icon">
+                <Image
+                  width={23}
+                  height={23}
+                  alt="heart"
+                  src="image/heart.svg"
+                />
+              </a>
+            </Link>
+
             <button className="btn_icon" onClick={toggleRegistrationForm}>
-              <Image width={23} height={23} alt="logo" src="image/user.svg" />
+              <Image width={23} height={23} alt="user" src="image/user.svg" />
             </button>
           </div>
         </div>
