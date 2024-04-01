@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CartContext } from "../CartContext/CartContext";
 import styles from "./Drawer.module.css";
 import Image from "next/image";
@@ -14,33 +14,47 @@ export default function Drawer({ isOpen }) {
   const { cartItems, setCartItems, removeItemFromCart } =
     useContext(CartContext);
 
- // Подсчет количества добавленного товара
-  const [count, setCount] = useState(1);
-
   // стейт для скрытия тени от корзины
   const [isOverlayOpen, setIsOverlayOpen] = useState(true);
+
+  
+  // Подсчет количества добавленного товара
+  const [count, setCount] = useState(1);
+
+  // Стейт для подсчета стоимости товаров
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // стейт для отправки заказа в корзине
   const [isOrderComplete, setIsOrderComplete] = useState(false);
 
   // const [isFormVisible, setIsFormVisible] = useState(false);
 
+  // Счетчики количества товаров
   const handleIncrement = () => {
     setCount(count + 1);
+    updateTotalPrice();
   };
 
   const handleDecrement = () => {
     setCount(count - 1);
+    updateTotalPrice();
   };
 
   // Стоимость доставки
   const shippingCost = 500;
 
-  // считаем сумму всех товаров в корзине
-  const totalPrice = cartItems.reduce(
-    (sum, product) => Number(product.price) + sum,
-    0
-  );
+  // Итоговая стоимость товаров в корзине
+  const updateTotalPrice = () => {
+    const updatedPrice = cartItems.reduce(
+      (sum, product) => Number(product.price) * count + sum,
+      0
+    );
+    setTotalPrice(updatedPrice);
+  };
+
+  useEffect(() => {
+    updateTotalPrice();
+  }, [count, cartItems]);
 
   // Итоговая стоимость, с учетом доставки
   const totalWithShipping = totalPrice + shippingCost;
@@ -107,13 +121,15 @@ export default function Drawer({ isOpen }) {
                       </p>
                       <div className={styles.cart__counter}>
                         <button
-                           onClick={handleDecrement}
-                           disabled={count === 1}
+                          onClick={handleDecrement}
+                          disabled={count === 1}
                           className={styles.counter_button}
                         >
                           -
                         </button>
-                        {count > 0 && <span className={styles.counter_value}>{count}</span>}
+                        {count > 0 && (
+                          <span className={styles.counter_value}>{count}</span>
+                        )}
                         <button
                           onClick={handleIncrement}
                           disabled={count > 10}
