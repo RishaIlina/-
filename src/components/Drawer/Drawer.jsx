@@ -20,8 +20,6 @@ export default function Drawer({ isOpen }) {
   // Стейт для подсчета стоимости товаров
   const [totalPrice, setTotalPrice] = useState(0);
 
-
-
   // стейт для отправки заказа в корзине
   const [isOrderComplete, setIsOrderComplete] = useState(false);
 

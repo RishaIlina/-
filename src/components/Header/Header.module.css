@@ -30,3 +30,20 @@
     display: flex;
     gap: 10px;
 }
+
+.cart_count {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    font-size: 10px;
+    background: #9b9b9b;
+    border-radius: 50%;
+    color: #fff;
+    padding: 4px;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

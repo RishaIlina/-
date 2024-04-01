@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from "../CartContext/CartContext";
 import styles from "./Header.module.css";
 import Drawer from "../Drawer/Drawer";
 import Image from "next/image";
@@ -7,6 +8,8 @@ import Navigation from "../Navigation/Navigation";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 
 const Header = () => {
+  const { totalItemsInCart } = useContext(CartContext);
+
   // стейт для открытия корзины
   const [cartOpened, setCartOpened] = useState(false);
 
@@ -55,6 +58,9 @@ const Header = () => {
           <div className={styles.header__right}>
             <button id="open_basket" className="btn_icon" onClick={toggleCart}>
               <Image width={23} height={23} alt="logo" src="image/basket.svg" />
+              {totalItemsInCart > 0 && (
+                <span className={styles.cart_count}>{totalItemsInCart}</span>
+              )}
             </button>
             <Link legacyBehavior href="/Favourites">
               <a className="btn_icon">

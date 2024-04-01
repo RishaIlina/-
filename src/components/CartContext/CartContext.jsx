@@ -13,7 +13,10 @@ const CartProvider = ({ children }) => {
   // Стейт для подсчета количества товаров в корзине
   const [itemCounts, setItemCounts] = useState({});
 
-  // Состояние для избранных товаров
+  // Стейт для хранения общего количества товаров в корзине
+  const [totalItemsInCart, setTotalItemsInCart] = useState(0);
+
+  // Стейт для избранных товаров
   const [favouriteItems, setFavouriteItems] = useState([]);
 
   // Получение товаров из базы данных
@@ -94,7 +97,6 @@ const CartProvider = ({ children }) => {
       });
   };
 
-  
   useEffect(() => {
     // Загрузка товаров из корзины
     getProductsForCartFromServer();
@@ -114,6 +116,11 @@ const CartProvider = ({ children }) => {
     }, {});
     setItemCounts(newCounts);
   }, [cartItems]);
+
+  useEffect(() => {
+    const totalItems = Object.values(itemCounts).reduce((acc, count) => acc + count, 0);
+    setTotalItemsInCart(totalItems);
+  }, [itemCounts]);  
 
   // Удаление товара из корзины
   const removeItemFromCart = async (id) => {
@@ -166,6 +173,7 @@ const CartProvider = ({ children }) => {
         removeFromFavourites,
         itemCounts,
         setItemCounts,
+        totalItemsInCart
       }}
     >
       {children}
