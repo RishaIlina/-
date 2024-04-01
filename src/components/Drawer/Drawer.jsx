@@ -11,33 +11,44 @@ import axios from "axios";
  * @param {Function} isOpen - Функция для открытия/закрытия корзины.
  */
 export default function Drawer({ isOpen }) {
-  const { cartItems, setCartItems, removeItemFromCart } =
+  const { cartItems, setCartItems, removeItemFromCart, setItemCounts, itemCounts } =
     useContext(CartContext);
 
   // стейт для скрытия тени от корзины
   const [isOverlayOpen, setIsOverlayOpen] = useState(true);
 
-  
-  // Подсчет количества добавленного товара
-  const [count, setCount] = useState(1);
-
   // Стейт для подсчета стоимости товаров
   const [totalPrice, setTotalPrice] = useState(0);
+
+
 
   // стейт для отправки заказа в корзине
   const [isOrderComplete, setIsOrderComplete] = useState(false);
 
   // const [isFormVisible, setIsFormVisible] = useState(false);
 
-  // Счетчики количества товаров
-  const handleIncrement = () => {
-    setCount(count + 1);
-    updateTotalPrice();
+  // Чтобы инициализировать счетчик каждого товара в корзине значением 1 по умолчанию
+  useEffect(() => {
+    const initialCounts = cartItems.reduce((acc, product) => {
+      acc[product.id] = 1;
+      return acc;
+    }, {});
+    setItemCounts(initialCounts);
+  }, [cartItems]);
+
+  // Счетчики количества товаров в корзине
+  const handleIncrement = (productId) => {
+    setItemCounts((prevCounts) => ({
+      ...prevCounts,
+      [productId]: (prevCounts[productId] || 0) + 1,
+    }));
   };
 
-  const handleDecrement = () => {
-    setCount(count - 1);
-    updateTotalPrice();
+  const handleDecrement = (productId) => {
+    setItemCounts((prevCounts) => ({
+      ...prevCounts,
+      [productId]: Math.max((prevCounts[productId] || 0) - 1, 0),
+    }));
   };
 
   // Стоимость доставки
@@ -45,17 +56,18 @@ export default function Drawer({ isOpen }) {
 
   // Итоговая стоимость товаров в корзине
   const updateTotalPrice = () => {
-    const updatedPrice = cartItems.reduce(
-      (sum, product) => Number(product.price) * count + sum,
-      0
-    );
+    const updatedPrice = cartItems.reduce((sum, product) => {
+      const itemPrice = Number(product.price);
+      const itemCount = itemCounts[product.id] || 0;
+      return sum + itemPrice * itemCount;
+    }, 0);
     setTotalPrice(updatedPrice);
   };
-
+  
   useEffect(() => {
     updateTotalPrice();
-  }, [count, cartItems]);
-
+  }, [itemCounts, cartItems]);
+  
   // Итоговая стоимость, с учетом доставки
   const totalWithShipping = totalPrice + shippingCost;
 
@@ -121,18 +133,20 @@ export default function Drawer({ isOpen }) {
                       </p>
                       <div className={styles.cart__counter}>
                         <button
-                          onClick={handleDecrement}
-                          disabled={count === 1}
+                          onClick={() => handleDecrement(product.id)}
+                          disabled={(itemCounts[product.id] || 1) === 1}
                           className={styles.counter_button}
                         >
                           -
                         </button>
-                        {count > 0 && (
-                          <span className={styles.counter_value}>{count}</span>
+                        {itemCounts[product.id] > 0 && (
+                          <span className={styles.counter_value}>
+                            {itemCounts[product.id]}
+                          </span>
                         )}
                         <button
-                          onClick={handleIncrement}
-                          disabled={count > 10}
+                          onClick={() => handleIncrement(product.id)}
+                          disabled={(itemCounts[product.id] || 0) > 10}
                           className={styles.counter_button}
                         >
                           +
