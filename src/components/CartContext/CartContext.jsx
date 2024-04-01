@@ -10,10 +10,13 @@ const CartProvider = ({ children }) => {
   // Состояние для товаров в корзине
   const [cartItems, setCartItems] = useState([]);
 
+  // Стейт для подсчета количества товаров в корзине
+  const [itemCounts, setItemCounts] = useState({});
+
   // Состояние для избранных товаров
   const [favouriteItems, setFavouriteItems] = useState([]);
 
-  // Получение товаров из базы данных 
+  // Получение товаров из базы данных
   const getProductsFromServer = async () => {
     try {
       const response = await axios.get(
@@ -78,19 +81,39 @@ const CartProvider = ({ children }) => {
       .get("https://65d386d8522627d501091517.mockapi.io/cart")
       .then((response) => {
         setCartItems(response.data);
+
+        // Восстановление количества товаров из cartItems в itemCounts
+        const initialCounts = response.data.reduce((acc, product) => {
+          acc[product.id] = 1;
+          return acc;
+        }, {});
+        setItemCounts(initialCounts);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
-  // Загрузка товаров из корзины
+  
   useEffect(() => {
+    // Загрузка товаров из корзины
     getProductsForCartFromServer();
-    
+
     // При загрузке страницы получаем избранные товары из local storage
     const savedFavourites = localStorage.getItem("favouriteItems");
     if (savedFavourites) {
       setFavouriteItems(JSON.parse(savedFavourites));
     }
   }, []);
+
+   // Обновление состояния itemCounts при изменениях в cartItems
+   useEffect(() => {
+    const newCounts = cartItems.reduce((acc, product) => {
+      acc[product.id] = itemCounts[product.id] || 1;
+      return acc;
+    }, {});
+    setItemCounts(newCounts);
+  }, [cartItems]);
 
   // Удаление товара из корзины
   const removeItemFromCart = async (id) => {
@@ -115,10 +138,12 @@ const CartProvider = ({ children }) => {
 
   // Функция удаления товара из избранного
   const removeFromFavourites = (productId) => {
-    const updatedFavourites = favouriteItems.filter((item) => item !== productId);
+    const updatedFavourites = favouriteItems.filter(
+      (item) => item !== productId
+    );
     setFavouriteItems(updatedFavourites);
     localStorage.setItem("favouriteItems", JSON.stringify(updatedFavourites));
-  };  
+  };
 
   // Операции с избранными товарами обновляются в local storage
   useEffect(() => {
@@ -139,6 +164,8 @@ const CartProvider = ({ children }) => {
         favouriteItems,
         addToFavourites,
         removeFromFavourites,
+        itemCounts,
+        setItemCounts,
       }}
     >
       {children}
