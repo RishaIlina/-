@@ -1,7 +1,7 @@
 .cart__form {
     display: block;
     overflow: auto;
-    margin-bottom: 320px;
+    margin-bottom: 300px;
     flex: 1;
 }
 
@@ -117,6 +117,17 @@
     left: 20px;
     top: 20px;
     transition: transform 0.15s ease-in-out;
+}
+
+.cart__empty_arrow_disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .cart__total_btn:hover {
+    .cart__total_arrow_disabled {
+        transform: none;
+    }
 }
 
 .cart__empty_btn {

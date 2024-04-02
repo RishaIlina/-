@@ -1,20 +1,42 @@
+import { useState } from "react";
 import styles from "./CartForm.module.css";
 import Image from "next/image";
-import { useState } from "react";
 
-export default function CartForm( { closeCartHandler } ) {
-//   const [name, setName] = useState("");
-//   const [phone, setPhone] = useState("");
+
+export default function CartForm({ closeCartHandler }) {
+  // Стейт для хранения имени
+  const [name, setName] = useState("");
+
+  // Стейт для хранения номера телефона
+  const [phone, setPhone] = useState("");
+
+  // Стейт для отслеживания состояния размещения заказа
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
 
-//   const onInputChange = (e) => {
-//     const { name, value } = e.target;
-//     if (name === "name") {
-//       setName(value);
-//     } else if (name === "phone") {
-//       setPhone(value);
-//     }
-//   };
+  // Функция для обновления состояния имени при изменении в инпуте
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  // Функция для обновления состояния номера телефона при изменении в инпуте
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+
+  // Функция для отправки информации о заказе в чат Telegram и обновления состояния заказа
+  const handleOrderSubmit = () => {
+    // Отправка информации о заказе в чат Telegram через API
+    const orderInfo = {
+      name: name,
+      phone: phone,
+    };
+    console.log("Информация о заказе:", orderInfo);
+
+    // Обновляем состояние для отслеживания размещения заказа
+    setIsOrderPlaced(true);
+    // Вызываем функцию закрытия корзины
+    closeCartHandler();
+  };
 
   return (
     <div className={styles.container}>
@@ -29,7 +51,8 @@ export default function CartForm( { closeCartHandler } ) {
             />
             <h2 className={styles.cart__empty_text}>Заказ оформлен!</h2>
             <p className={styles.cart__empty_description}>
-            В ближайшее время с вами свяжется наш менеджер для уточнения информации по заказу
+              В ближайшее время с вами свяжется наш менеджер для уточнения
+              информации по заказу
             </p>
             <button
               className={` button ${styles.cart__total_btn} ${styles.cart__empty_btn} `}
@@ -60,7 +83,12 @@ export default function CartForm( { closeCartHandler } ) {
                   width={13}
                   height={13}
                 />
-                <input type="text" placeholder="Имя" />
+                <input
+                  type="text"
+                  placeholder="Имя"
+                  value={name}
+                  onChange={handleNameChange}
+                />
               </div>
               <div className={styles.input}>
                 <Image
@@ -69,7 +97,12 @@ export default function CartForm( { closeCartHandler } ) {
                   width={18}
                   height={18}
                 />
-                <input type="tel" placeholder="Номер телефона" />
+                <input
+                  type="tel"
+                  placeholder="Номер телефона"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                />
               </div>
             </div>
           </div>
@@ -77,11 +110,12 @@ export default function CartForm( { closeCartHandler } ) {
           <div className={styles.cart__total_block}>
             <button
               className={` button ${styles.cart__total_btn}`}
-              onClick={() => setIsOrderPlaced(true)} 
+              onClick={handleOrderSubmit}
+              disabled={!name || !phone}
             >
               Отправить
               <Image
-                className={styles.cart__total_arrow}
+                 className={`${styles.cart__total_arrow} ${(!name || !phone) ? styles.cart__empty_arrow_disabled : ''}`}
                 src="/image/arrow.svg"
                 alt="Стрелка"
                 width={16}
