@@ -4,6 +4,7 @@ import { CartContext } from "../CartContext/CartContext";
 import styles from "./Drawer.module.css";
 import Image from "next/image";
 import CartInfo from "../CartInfo/CartInfo";
+import CartForm from "../CartForm/CartForm";
 import axios from "axios";
 
 /**
@@ -11,8 +12,13 @@ import axios from "axios";
  * @param {Function} isOpen - Функция для открытия/закрытия корзины.
  */
 export default function Drawer({ isOpen }) {
-  const { cartItems, setCartItems, removeItemFromCart, setItemCounts, itemCounts } =
-    useContext(CartContext);
+  const {
+    cartItems,
+    setCartItems,
+    removeItemFromCart,
+    setItemCounts,
+    itemCounts,
+  } = useContext(CartContext);
 
   // стейт для скрытия тени от корзины
   const [isOverlayOpen, setIsOverlayOpen] = useState(true);
@@ -22,8 +28,6 @@ export default function Drawer({ isOpen }) {
 
   // стейт для отправки заказа в корзине
   const [isOrderComplete, setIsOrderComplete] = useState(false);
-
-  // const [isFormVisible, setIsFormVisible] = useState(false);
 
   // Чтобы инициализировать счетчик каждого товара в корзине значением 1 по умолчанию
   useEffect(() => {
@@ -61,17 +65,15 @@ export default function Drawer({ isOpen }) {
     }, 0);
     setTotalPrice(updatedPrice);
   };
-  
+
   useEffect(() => {
     updateTotalPrice();
   }, [itemCounts, cartItems]);
-  
+
   // Итоговая стоимость, с учетом доставки
   const totalWithShipping = totalPrice + shippingCost;
 
   const onClickOrder = async () => {
-    // Если форма видима - не отправляем заказ
-    // if (isFormVisible) return;
     // заказ создан
     setIsOrderComplete(true);
     // очищаем массив корзины
@@ -197,22 +199,7 @@ export default function Drawer({ isOpen }) {
                 </button>
               </div>
             </>
-          ) : (
-            <CartInfo
-              imgSrc={
-                isOrderComplete
-                  ? "/image/complete-order.jpg"
-                  : "/image/empty-cart.jpg"
-              }
-              text={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
-              description={
-                isOrderComplete
-                  ? "В ближайшее время с вами свяжется наш менеджер для уточнения информации по заказу"
-                  : "Добавьте хотя бы один товар, чтобы сделать заказ"
-              }
-              closeCartHandler={closeCartHandler}
-            />
-          )}
+          ) : (<>{isOrderComplete ? ( <CartForm closeCartHandler={closeCartHandler} />) : ( <CartInfo closeCartHandler={closeCartHandler} />)}</> )}
         </div>
       )}
     </div>
