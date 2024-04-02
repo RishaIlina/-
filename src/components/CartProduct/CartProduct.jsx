@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useState, useEffect } from "react";
 import { CartContext } from "../CartContext/CartContext";
-import styles from "./Drawer.module.css";
+import styles from "./CartProduct.module.css";
 import Image from "next/image";
 import CartInfo from "../CartInfo/CartInfo";
 import CartForm from "../CartForm/CartForm";
@@ -11,7 +11,7 @@ import axios from "axios";
  * Компонент корзины с товарами.
  * @param {Function} isOpen - Функция для открытия/закрытия корзины.
  */
-export default function Drawer({ isOpen }) {
+export default function CartProduct({ isOpen }) {
   const {
     cartItems,
     setCartItems,
@@ -87,7 +87,9 @@ export default function Drawer({ isOpen }) {
     // передаем информацию о выбранных товарах в CartForm
     setIsOrderComplete(true);
     setSelectedProducts(selectedProducts);
+    // Очищаем корзину
     setCartItems([]);
+    // Удаляем товары с сервера
     for (const product of cartItems) {
       await axios.delete(
         `https://65d386d8522627d501091517.mockapi.io/cart/${product.id}`
