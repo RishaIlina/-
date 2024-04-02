@@ -7,12 +7,12 @@ export default function CartInfo( {imgSrc, text, description, closeCartHandler} 
       <Image
         width={100}
         height={110}
-        src={imgSrc}
+        src="/image/empty-cart.jpg"
         alt="Корзина"
       />
-      <h2 className={styles.cart__empty_text}>{text}</h2>
+      <h2 className={styles.cart__empty_text}>Корзина пустая</h2>
       <p className={styles.cart__empty_description}>
-       {description}
+      Добавьте хотя бы один товар, чтобы сделать заказ
       </p>
       <button
         className={` button ${styles.cart__total_btn} ${styles.cart__empty_btn} `}
