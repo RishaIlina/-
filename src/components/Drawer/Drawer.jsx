@@ -29,6 +29,9 @@ export default function Drawer({ isOpen }) {
   // стейт для отправки заказа в корзине
   const [isOrderComplete, setIsOrderComplete] = useState(false);
 
+  // Стейт для хранения информации о выбранных товарах и их количестве
+  const [selectedProducts, setSelectedProducts] = useState({});
+
   // Чтобы инициализировать счетчик каждого товара в корзине значением 1 по умолчанию
   useEffect(() => {
     const initialCounts = cartItems.reduce((acc, product) => {
@@ -74,14 +77,20 @@ export default function Drawer({ isOpen }) {
   const totalWithShipping = totalPrice + shippingCost;
 
   const onClickOrder = async () => {
-    // заказ создан
+    // Формируем список выбранных товаров для передачи в CartForm
+    const selectedProducts = cartItems.map((product) => ({
+      id: product.id,
+      name: product.name,
+      quantity: itemCounts[product.id] || 0, // Количество товаров из состояния itemCounts
+    }));
+
+    // передаем информацию о выбранных товарах в CartForm
     setIsOrderComplete(true);
-    // очищаем массив корзины
+    setSelectedProducts(selectedProducts);
     setCartItems([]);
-    // удаляем товары с сервера
     for (const product of cartItems) {
       await axios.delete(
-        "https://65d386d8522627d501091517.mockapi.io/cart/" + product.id
+        `https://65d386d8522627d501091517.mockapi.io/cart/${product.id}`
       );
     }
   };
@@ -199,7 +208,18 @@ export default function Drawer({ isOpen }) {
                 </button>
               </div>
             </>
-          ) : (<>{isOrderComplete ? ( <CartForm closeCartHandler={closeCartHandler} />) : ( <CartInfo closeCartHandler={closeCartHandler} />)}</> )}
+          ) : (
+            <>
+              {isOrderComplete ? (
+                <CartForm
+                  closeCartHandler={closeCartHandler}
+                  selectedProducts={selectedProducts}
+                />
+              ) : (
+                <CartInfo closeCartHandler={closeCartHandler} />
+              )}
+            </>
+          )}
         </div>
       )}
     </div>

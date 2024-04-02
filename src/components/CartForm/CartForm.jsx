@@ -3,7 +3,7 @@ import styles from "./CartForm.module.css";
 import Image from "next/image";
 
 
-export default function CartForm({ closeCartHandler }) {
+export default function CartForm({ selectedProducts, closeCartHandler }) {
   // Стейт для хранения имени
   const [name, setName] = useState("");
 
@@ -29,13 +29,12 @@ export default function CartForm({ closeCartHandler }) {
     const orderInfo = {
       name: name,
       phone: phone,
+      selectedProducts,
     };
     console.log("Информация о заказе:", orderInfo);
 
     // Обновляем состояние для отслеживания размещения заказа
     setIsOrderPlaced(true);
-    // Вызываем функцию закрытия корзины
-    closeCartHandler();
   };
 
   return (
