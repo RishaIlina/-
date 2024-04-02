@@ -125,7 +125,7 @@
   }
 
   .cart__total_btn:hover {
-    .cart__total_arrow_disabled {
+    .cart__empty_arrow_disabled {
         transform: none;
     }
 }
