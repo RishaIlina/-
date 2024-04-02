@@ -1,6 +1,9 @@
 import styles from "./CartInfo.module.css"
 import Image from "next/image";
 
+/**
+ * Если корзина пустая, показывается этот компонент
+ */
 export default function CartInfo( { closeCartHandler } ) {
   return (
     <div className={styles.cart__empty}>
