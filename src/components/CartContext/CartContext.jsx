@@ -3,6 +3,10 @@ import axios from "axios";
 
 const CartContext = createContext();
 
+/**
+ * Провайдер состояния для корзины и товаров.
+ * @param {ReactNode} children - Дочерние компоненты, на которые распространяется состояние.
+ */
 const CartProvider = ({ children }) => {
   // Стейт для отображения карточек
   const [products, setProducts] = useState([]);
@@ -108,8 +112,8 @@ const CartProvider = ({ children }) => {
     }
   }, []);
 
-   // Обновление состояния itemCounts при изменениях в cartItems
-   useEffect(() => {
+  // Обновление состояния itemCounts при изменениях в cartItems
+  useEffect(() => {
     const newCounts = cartItems.reduce((acc, product) => {
       acc[product.id] = itemCounts[product.id] || 1;
       return acc;
@@ -117,10 +121,14 @@ const CartProvider = ({ children }) => {
     setItemCounts(newCounts);
   }, [cartItems]);
 
+  // Обновление общего количества товаров в корзине при изменениях в itemCounts
   useEffect(() => {
-    const totalItems = Object.values(itemCounts).reduce((acc, count) => acc + count, 0);
+    const totalItems = Object.values(itemCounts).reduce(
+      (acc, count) => acc + count,
+      0
+    );
     setTotalItemsInCart(totalItems);
-  }, [itemCounts]);  
+  }, [itemCounts]);
 
   // Удаление товара из корзины
   const removeItemFromCart = async (id) => {
@@ -173,7 +181,7 @@ const CartProvider = ({ children }) => {
         removeFromFavourites,
         itemCounts,
         setItemCounts,
-        totalItemsInCart
+        totalItemsInCart,
       }}
     >
       {children}

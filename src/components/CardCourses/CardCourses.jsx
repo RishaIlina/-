@@ -1,6 +1,9 @@
 import styles from "../CardCourses/CardCourses.module.css";
 import Image from "next/image";
 
+/**
+ * Компонент с курсами.
+ */
 export default function CardCourses(props) {
   const { name, time, imgSrc, price, text } = props.details;
   return (

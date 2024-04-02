@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./CartForm.module.css";
 import Image from "next/image";
+import axios from "axios";
 
-
+/**
+ * Компонент формы корзины с выбранными товарами.
+ * @param {Array} selectedProducts - Список выбранных товаров для отображения в форме.
+ * @param {Function} closeCartHandler - Функция для закрытия формы корзины.
+ */
 export default function CartForm({ selectedProducts, closeCartHandler }) {
   // Стейт для хранения имени
   const [name, setName] = useState("");
@@ -24,18 +29,40 @@ export default function CartForm({ selectedProducts, closeCartHandler }) {
   };
 
   // Функция для отправки информации о заказе в чат Telegram и обновления состояния заказа
-  const handleOrderSubmit = () => {
+  const handleOrderSubmit = async () => {
     // Отправка информации о заказе в чат Telegram через API
     const orderInfo = {
-      name: name,
-      phone: phone,
-      selectedProducts,
+      Имя: name,
+      Телефон: phone,
+      Заказ: selectedProducts,
     };
     console.log("Информация о заказе:", orderInfo);
+
+    try {
+      const response = await axios.post(
+        `http:/api.telegram.org/send-message`,
+        {
+          chat_id: "{-4132889689}",
+          text: `New Order:\nИмя: ${name}\nТелефон: ${phone}\nЗаказ: ${JSON.stringify(
+            selectedProducts
+          )}`,
+        }
+      );
+
+      console.log("Telegram API response:", response.data);
+    } catch (error) {
+      console.error("Error sending message to Telegram:", error);
+    }
 
     // Обновляем состояние для отслеживания размещения заказа
     setIsOrderPlaced(true);
   };
+
+  useEffect(() => {
+    if (isOrderPlaced) {
+      closeCartHandler();
+    }
+  }, [isOrderPlaced, closeCartHandler]);
 
   return (
     <div className={styles.container}>
@@ -114,7 +141,9 @@ export default function CartForm({ selectedProducts, closeCartHandler }) {
             >
               Отправить
               <Image
-                 className={`${styles.cart__total_arrow} ${(!name || !phone) ? styles.cart__empty_arrow_disabled : ''}`}
+                className={`${styles.cart__total_arrow} ${
+                  !name || !phone ? styles.cart__empty_arrow_disabled : ""
+                }`}
                 src="/image/arrow.svg"
                 alt="Стрелка"
                 width={16}

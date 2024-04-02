@@ -1,19 +1,23 @@
 import { useState, useContext } from "react";
 import { CartContext } from "../CartContext/CartContext";
 import styles from "./Header.module.css";
-import Drawer from "../Drawer/Drawer";
+import CartProduct from "../CartProduct/CartProduct";
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 
+/**
+ * Шапка профиля.
+ */
 const Header = () => {
+  // Счетчик товаров в корзине
   const { totalItemsInCart } = useContext(CartContext);
 
-  // стейт для открытия корзины
+  // Стейт для открытия корзины
   const [cartOpened, setCartOpened] = useState(false);
 
-  // стейт для открытия формы регистрации
+  // Стейт для открытия формы регистрации
   const [registrationFormOpened, setRegistrationFormOpened] = useState(false);
 
   const toggleCart = () => {
@@ -26,7 +30,7 @@ const Header = () => {
 
   return (
     <>
-      {cartOpened && <Drawer isOpen={toggleCart} />}
+      {cartOpened && <CartProduct isOpen={toggleCart} />}
       {registrationFormOpened && (
         <RegistrationForm isOpen={toggleRegistrationForm} />
       )}
