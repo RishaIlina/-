@@ -1,7 +1,7 @@
 import styles from "./CartInfo.module.css"
 import Image from "next/image";
 
-export default function CartInfo( {imgSrc, text, description, closeCartHandler} ) {
+export default function CartInfo( { closeCartHandler } ) {
   return (
     <div className={styles.cart__empty}>
       <Image
