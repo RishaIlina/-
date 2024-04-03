@@ -1,0 +1,33 @@
+.accordeon__item {
+    margin-bottom: 10px;
+    background-color: #FAFAFA;
+}
+
+.accordeon__title {
+    font-size: 16px;
+    padding: 16px 50px 16px 13px;
+    background-color: transparent;
+}
+
+.accordion__ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.accordion__li {
+    margin-top: 15px;
+}
+
+.accordion__li:before {
+    content: "\2022";
+    margin-right: 5px;
+}
+
+.accordeon__box {
+    padding: 20px 40px;
+}
+
+  .accordeon__icon {
+    font-size: 24px;
+    margin-right: 10px;
+}

@@ -1,6 +1,6 @@
 import styles from "../styles/Reviews.module.css";
 import FeedbackSlider from "../components/FeedbackSlider/FeedbackSlider";
-
+import CustomAccordion from "../components/CustomAccordion/CustomAccordion";
 /**
  * Страница с отзывами
  */
@@ -33,26 +33,40 @@ export default function Reviews() {
     },
   ];
 
-
   return (
-    <section className={` ${styles.feedback} section pt_150 pb_150 `}>
-      <div className="container">
-        <div className={` ${styles.feedback__inner} section__inner `}>
-          <div className={` ${styles.feedback__descr} section__descr `}>
-            <h2 className="title">Отзывы от клиентов</h2>
-            <p className="section__text">
-              Наши покупатели имеют разный возраст, статус, занятия и интересы,
-              но у них есть одна общая черта - они стремятся к гармонии и
-              находят радость в маленьких радостях жизни, которые создают
-              атмосферу уюта и гармонии в их доме.
-            </p>
-          </div>
+    <>
+      <section className={` ${styles.feedback} section pt_150 pb_150 `}>
+        <div className="container">
+          <div className={` ${styles.feedback__inner} section__inner `}>
+            <div className={` ${styles.feedback__descr} section__descr `}>
+              <h2 className="title">Отзывы от клиентов</h2>
+              <p className="section__text">
+                Наши покупатели имеют разный возраст, статус, занятия и
+                интересы, но у них есть одна общая черта - они стремятся к
+                гармонии и находят радость в маленьких радостях жизни, которые
+                создают атмосферу уюта и гармонии в их доме.
+              </p>
+            </div>
 
-          <div className={` ${styles.feedback__content} section__decor `}>
-           <FeedbackSlider feedbackData={initialFeedback} />
+            <div className={` ${styles.feedback__content} section__decor `}>
+              <FeedbackSlider feedbackData={initialFeedback} />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className={` ${styles.questions} section `}>
+        <div className="container">
+          <div className="section__inner">
+            <div className={` ${styles.questions__descr} section__descr `}>
+              <h2 className="title">Часто задаваемые вопросы</h2>
+            </div>
+            <div className={styles.questions__content}>
+              <CustomAccordion />
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
