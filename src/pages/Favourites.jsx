@@ -26,7 +26,7 @@ export default function Favourites() {
   );
 
   return (
-    <section className={` ${styles.favourites} pb_150 `}>
+    <section className={styles.favourites}>
       <div className={styles.products__top}>
         <h1 className={styles.products__top_title}>Избранное</h1>
       </div>
