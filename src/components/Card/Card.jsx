@@ -63,6 +63,8 @@ export default function Card(props) {
             src={imgSrc}
             alt={name}
             className={styles.products__item_img}
+            priority={true}
+            loading="eager"
           />
           <div className={styles.products__item_top}>
             <p>{name}</p>
