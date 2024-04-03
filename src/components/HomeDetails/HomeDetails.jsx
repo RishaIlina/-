@@ -102,6 +102,7 @@ export default function HomeDetails() {
                   className="top__img-l"
                   src="/image/top-l.png"
                   alt="ассортимент свечей"
+                  priority={true}
                 />
               </picture>
             </div>

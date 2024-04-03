@@ -44,6 +44,7 @@ const Header = () => {
                 alt="logo"
                 className={styles.logo__img}
                 src="image/logo-header.svg"
+                priority={true}
               />
             </a>
           </Link>

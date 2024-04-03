@@ -15,6 +15,7 @@ const Footer = () => {
               alt="logo"
               className={styles.logo__Image}
               src="image/logo-header.svg"
+              priority={true}
             />
           </a>
         </Link>

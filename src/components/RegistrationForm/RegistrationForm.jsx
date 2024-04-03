@@ -34,11 +34,18 @@ export default function RegistrationForm({ isOpen }) {
               alt="пользователь"
               width={15}
               height={15}
+              priority={true}
             />
             <input type="text" placeholder="Имя" />
           </div>
           <div className={styles.input}>
-            <Image src="/image/email.png" alt="почта" width={18} height={12} />
+            <Image
+              src="/image/email.png"
+              alt="почта"
+              width={18}
+              height={12}
+              priority={true}
+            />
             <input type="email" placeholder="Почта" />
           </div>
           <div className={styles.input}>
@@ -47,6 +54,7 @@ export default function RegistrationForm({ isOpen }) {
               alt="пароль"
               width={15}
               height={15}
+              priority={true}
             />
             <input type="password" placeholder="Пароль" />
           </div>
