@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./CartForm.module.css";
 import Image from "next/image";
-import axios from "axios";
+// import axios from "axios";
 
 /**
  * Компонент формы корзины с выбранными товарами.
@@ -38,30 +38,17 @@ export default function CartForm({ selectedProducts, closeCartHandler }) {
     };
     console.log("Информация о заказе:", orderInfo);
 
-    try {
-      const response = await axios.post(
-        `http:/api.telegram.org/send-message`,
-        {
-          chat_id: "{-4132889689}",
-          text: `New Order:\nИмя: ${name}\nТелефон: ${phone}\nЗаказ: ${JSON.stringify(
-            selectedProducts
-          )}`,
-        }
-      );
-
-      console.log("Telegram API response:", response.data);
-    } catch (error) {
-      console.error("Error sending message to Telegram:", error);
-    }
-
     // Обновляем состояние для отслеживания размещения заказа
     setIsOrderPlaced(true);
   };
 
   useEffect(() => {
     if (isOrderPlaced) {
+       // Добавляем задержку для имитации отправки данных и получения ответа
+    setTimeout(() => {
       closeCartHandler();
-    }
+    }, 2800);
+  }
   }, [isOrderPlaced, closeCartHandler]);
 
   return (
@@ -80,19 +67,6 @@ export default function CartForm({ selectedProducts, closeCartHandler }) {
               В ближайшее время с вами свяжется наш менеджер для уточнения
               информации по заказу
             </p>
-            <button
-              className={` button ${styles.cart__total_btn} ${styles.cart__empty_btn} `}
-              onClick={() => closeCartHandler()}
-            >
-              <Image
-                className={styles.cart__empty_arrow}
-                width={16}
-                height={14}
-                src="/image/arrow.svg"
-                alt="стрелка"
-              />
-              Вернуться назад
-            </button>
           </div>
         </>
       ) : (
@@ -108,6 +82,7 @@ export default function CartForm({ selectedProducts, closeCartHandler }) {
                   alt="пользователь"
                   width={13}
                   height={13}
+                  priority={true}
                 />
                 <input
                   type="text"
@@ -122,6 +97,7 @@ export default function CartForm({ selectedProducts, closeCartHandler }) {
                   alt="телефон"
                   width={18}
                   height={18}
+                  priority={true}
                 />
                 <input
                   type="tel"

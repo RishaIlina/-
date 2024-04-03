@@ -97,11 +97,12 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 60px auto;
+    margin: 120px auto;
 }
 
 .cart__empty_text {
     margin: 20px 0 10px 0;
+    font-weight: normal;
 }
  
 .cart__empty_description {
