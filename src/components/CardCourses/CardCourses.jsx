@@ -16,6 +16,7 @@ export default function CardCourses(props) {
             width={274}
             height={310}
             alt={name}
+            priority={true}
           />
           <p className={styles.courses__title}>{name}</p>
           <p className={styles.courses__time}>
