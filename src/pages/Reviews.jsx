@@ -1,6 +1,8 @@
 import styles from "../styles/Reviews.module.css";
 import FeedbackSlider from "../components/FeedbackSlider/FeedbackSlider";
 import CustomAccordion from "../components/CustomAccordion/CustomAccordion";
+import Head from "next/head";
+
 /**
  * Страница с отзывами
  */
@@ -33,8 +35,17 @@ export default function Reviews() {
     },
   ];
 
+  // Описание страницы для SEO
+  const feedbackDescription =
+    "Отзывы от наших клиентов - настоящие истории о том, как уют и гармония с помощью наших свечей входят в жизнь.";
+
   return (
     <>
+      <Head>
+        <title>Отзывы - Магазин свечей ручной работы</title>
+        <meta name="description" content={feedbackDescription} />
+      </Head>
+      
       <section className={` ${styles.feedback} section pt_150 pb_150 `}>
         <div className="container">
           <div className={` ${styles.feedback__inner} section__inner `}>
@@ -55,7 +66,7 @@ export default function Reviews() {
         </div>
       </section>
 
-      <section className={` ${styles.questions} section `}>
+      <section className={` ${styles.questions} section pb_150 `}>
         <div className="container">
           <div className="section__inner">
             <div className={` ${styles.questions__descr} section__descr `}>

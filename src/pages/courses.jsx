@@ -1,6 +1,7 @@
 import styles from "../styles/Courses.module.css";
 import CardCourses from "../components/CardCourses/CardCourses";
 import Teachers from "../components/Teachers/Teachers";
+import Head from "next/head";
 
 export default function Courses() {
   // данные карточки с курсами
@@ -65,8 +66,17 @@ export default function Courses() {
       <Teachers key={teacher?.id} details={teacher} />
     ));
 
+  // Описание курсов для SEO
+  const coursesDescription =
+    "Развивайте свои навыки с нашими курсами. Первый шаг в новой карьере или углубление знаний в своей области.";
+
   return (
     <>
+      <Head>
+        <title>Курсы - Магазин свечей ручной работы</title>
+        <meta name="description" content={coursesDescription} />
+      </Head>
+      
       <section className={` ${styles.courses} pb_150 pt_150`}>
         <div className={` container section__inner`}>
           <div className="section__descr">

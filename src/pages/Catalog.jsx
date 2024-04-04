@@ -4,6 +4,7 @@ import Image from "next/image";
 import ContentLoader from "react-content-loader";
 import styles from "../styles/Catalog.module.css";
 import Card from "../components/Card/Card";
+import Head from "next/head";
 
 /**
  * Страница с каталогом товаров.
@@ -55,10 +56,14 @@ export default function Catalog() {
 
   return (
     <>
+    <Head>
+        <title>Каталог товаров - Магазин свечей ручной работы</title>
+        <meta name="description" content="Лучшие свечи ручной работы для уюта и атмосферы в вашем доме." />
+      </Head>
       <section className="products">
         <div className={styles.products__top}>
           <h1 className={styles.products__top_title}>
-            {searchValue ? `Поиск по запросу: "${searchValue}"` : ""}
+            {searchValue ? `Поиск по запросу: "${searchValue}"` : "Каталог товаров"}
           </h1>
           <div className={styles.products__search}>
             <div className={styles.search__block}>

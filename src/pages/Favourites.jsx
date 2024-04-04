@@ -2,16 +2,18 @@ import React, { useContext, useEffect } from "react";
 import { CartContext } from "../components/CartContext/CartContext";
 import Card from "../components/Card/Card";
 import styles from "../styles/Favourites.module.css";
+import Head from "next/head";
 
 /**
  * Страница с избранными товарами.
  */
 export default function Favourites() {
-  const { products, getProductsFromServer, favouriteItems, removeFromFavourites } =
-    useContext(CartContext);
-
-  console.log("продукты в favourits:", products);
-  console.log("избранные в favourits:", favouriteItems);
+  const {
+    products,
+    getProductsFromServer,
+    favouriteItems,
+    removeFromFavourites,
+  } = useContext(CartContext);
 
   useEffect(() => {
     // Если избранные товары еще не загружены, получаем их с сервера
@@ -25,23 +27,35 @@ export default function Favourites() {
     favouriteItems.includes(product.id)
   );
 
-  return (
-    <section className={styles.favourites}>
-      <div className={styles.products__top}>
-        <h1 className={styles.products__top_title}>Избранное</h1>
-      </div>
+  // Описание страницы для SEO
+  const favouritesDescription =
+    "Избранное из магазина свечей ручной работы. Самые понравившиеся продукты для вашего уюта и атмосферы.";
 
-      <div className={`container products_inner ${styles.favourites__block} `}>
-        {favouriteProducts.map((product) => (
-          <Card
-            key={product?.id}
-            details={product}
-            onClick={() => addItem({ ...product, parentId: product.id })}
-             isFavorite={product.isFavourite}
-             removeFromFavourites={removeFromFavourites}
-          />
-        ))}
-      </div>
-    </section>
+  return (
+    <>
+      <Head>
+        <title>Избранное - Магазин свечей ручной работы</title>
+        <meta name="description" content={favouritesDescription} />
+      </Head>
+      <section className={styles.favourites}>
+        <div className={styles.products__top}>
+          <h1 className={styles.products__top_title}>Избранное</h1>
+        </div>
+
+        <div
+          className={`container products_inner ${styles.favourites__block} `}
+        >
+          {favouriteProducts.map((product) => (
+            <Card
+              key={product?.id}
+              details={product}
+              onClick={() => addItem({ ...product, parentId: product.id })}
+              isFavorite={product.isFavourite}
+              removeFromFavourites={removeFromFavourites}
+            />
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
