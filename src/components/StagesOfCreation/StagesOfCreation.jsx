@@ -16,7 +16,7 @@ export default function StagesOfCreation(props) {
             src={imgSrc}
             alt={name}
             width={147}
-            height={220}
+            height={210}
             className={styles.steps__item_img}
             priority={true}
             loading="eager"
