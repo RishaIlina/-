@@ -46,3 +46,30 @@
     gap: 70px 25px;
     counter-reset: number;
 }
+
+/* Адаптив */
+@media (max-width: 1000px) {
+    .top__content {
+        width: 333px;
+        padding: 95px 0 70px;
+    }
+
+    .top__img_l {
+        width: 655px;
+        height: 423px;
+    }
+
+    .top__img {
+        left: 300px;
+    }
+
+    .section__text {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 900px) {
+    .top__title {
+        margin-bottom: 30px;
+    }
+}

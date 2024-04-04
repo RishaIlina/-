@@ -22,3 +22,14 @@
 .team__item_descr {
     font-size: 10px;
 }
+
+/* Адаптив */
+@media (max-width: 1000px) {
+.team {
+    padding: 50px 0;
+}
+
+.team__content {
+    gap: 30px 20px;
+}
+}

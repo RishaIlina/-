@@ -15,12 +15,12 @@ export default function Favourites() {
     removeFromFavourites,
   } = useContext(CartContext);
 
-  useEffect(() => {
-    // Если избранные товары еще не загружены, получаем их с сервера
-    if (!products.length) {
-      getProductsFromServer();
-    }
-  }, []);
+  // useEffect(() => {
+  //   // Если избранные товары еще не загружены, получаем их с сервера
+  //   if (!products.length) {
+  //     getProductsFromServer();
+  //   }
+  // }, []);
 
   // Фильтруем избранные товары из общего списка товаров
   const favouriteProducts = products.filter((product) =>

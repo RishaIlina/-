@@ -174,11 +174,6 @@ button {
   justify-content: flex-start
 }
 
-
-
-
-
-
 /* Атомарные классы*/
 .pb_150 {
   padding-bottom: 150px;
@@ -186,4 +181,44 @@ button {
 
 .pt_150 {
   padding-top: 150px;
+}
+
+
+/* Адаптив */
+@media (max-width: 1000px) {
+  .container {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  }
+
+  .section__inner {
+    grid-template-columns: 220px auto;
+    gap: 0 10px;
+  }
+
+  .products__content {
+    gap: 20px
+  }
+}
+
+@media (max-width: 900px) {
+  .title {
+    font-size: 30px;
+  }
+
+  .section__inner {
+    grid-template-columns: 290px auto;
+    gap: 0 30px;
+  }
+
+  .products__content {
+    gap: 30px 16px
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+      font-size: 10px;
+  }
 }

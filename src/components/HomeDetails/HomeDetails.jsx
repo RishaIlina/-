@@ -99,7 +99,7 @@ export default function HomeDetails() {
                 <Image
                   width={1073}
                   height={693}
-                  className="top__img-l"
+                  className={styles.top__img_l}
                   src="/image/top-l.png"
                   alt="ассортимент свечей"
                   priority={true}

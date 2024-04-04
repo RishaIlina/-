@@ -27,3 +27,13 @@
     flex-basis: 174px;
     padding-bottom: 40px;
 }
+
+@media (max-width: 1000px) {
+    .steps__item {
+        gap: 0 20px;
+    }
+
+    .steps__list {
+        gap: 30px 30px;
+    }
+}

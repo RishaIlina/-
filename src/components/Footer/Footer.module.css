@@ -54,3 +54,38 @@
 .footer__social_link img:hover {
     opacity: 0.5;
 }
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .title {
+        font-size: 30px;
+    }
+
+    .footer__inner {
+        flex-wrap: wrap;
+    }
+
+    .footer__contacts {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        padding-top: 15px;
+    }
+
+    .footer__phone::before {
+        left: 348px;
+        top: 10px;
+        background-size: cover;
+    }
+
+    .email::before {
+        left: 302px;
+        top: -3px;
+        background-size: cover;
+    }
+
+    .footer__social,
+    .footer__social-contacts {
+        justify-content: center;
+    }
+}
