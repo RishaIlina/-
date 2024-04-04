@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../FeedbackSlider/FeedbackSlider.module.css";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -20,7 +20,7 @@ export default function FeedbackSlider({ feedbackData }) {
       if (swiper) {
         swiper.slideNext();
       }
-    }, 5000);
+    }, 2000);
 
     return () => clearTimeout(sliderTimer);
   }, [swiper]);
@@ -35,8 +35,7 @@ export default function FeedbackSlider({ feedbackData }) {
       pagination={{
         clickable: true,
       }}
-      // navigation={true}
-      modules={[Pagination, Navigation]}
+      modules={[Pagination]}
       onSwiper={setSwiper}
       className={styles.main__swiper}
       style={{
