@@ -32,7 +32,7 @@ export default function RegistrationForm({ isOpen }) {
             <Image
               src="/image/person.png"
               alt="пользователь"
-              width={15}
+              width={14}
               height={15}
               priority={true}
             />
@@ -42,7 +42,7 @@ export default function RegistrationForm({ isOpen }) {
             <Image
               src="/image/email.png"
               alt="почта"
-              width={18}
+              width={15}
               height={12}
               priority={true}
             />
@@ -52,8 +52,8 @@ export default function RegistrationForm({ isOpen }) {
             <Image
               src="/image/password.png"
               alt="пароль"
-              width={15}
-              height={15}
+              width={14}
+              height={17}
               priority={true}
               loading="eager"
             />
