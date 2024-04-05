@@ -93,6 +93,7 @@
     opacity: 0.5;
     transition: opacity 0.15s ease-in-out;
     cursor: pointer;
+    margin-bottom: 60px;
 }
 
 .cart__item_remove:hover {

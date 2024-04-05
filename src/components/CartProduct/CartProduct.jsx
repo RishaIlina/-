@@ -133,7 +133,7 @@ export default function CartProduct({ isOpen }) {
                     <Image
                       src={product.imgSrc}
                       alt={product.name}
-                      width={90}
+                      width={80}
                       height={90}
                       className={styles.cart__item_img}
                     />
