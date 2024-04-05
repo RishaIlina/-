@@ -37,3 +37,26 @@
         gap: 30px 30px;
     }
 }
+
+@media (max-width: 768px) {
+    .steps__list {
+        gap: 35px 25px;
+    }
+
+    .steps__item {
+        gap: 0 20px;
+    }
+
+    .steps__item img {
+        width: 85px;
+        height: 150px;
+    }
+
+     .steps__item-text {
+        font-size: 8px;
+    }
+
+    .steps__item::before {
+        font-size: 20px;
+    }
+}

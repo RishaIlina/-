@@ -77,7 +77,7 @@ export default function Courses() {
         <meta name="description" content={coursesDescription} />
       </Head>
       
-      <section className={` ${styles.courses} pb_150 pt_150`}>
+      <section className={` ${styles.courses} `}>
         <div className={` container section__inner`}>
           <div className="section__descr">
             <h2 className="title">Наши курсы</h2>
@@ -89,7 +89,7 @@ export default function Courses() {
           </div>
 
           <div
-            className={` ${styles.courses__content} products__content section__content_descr section__decor `}
+            className={` ${styles.courses__content} products__content section__content_descr `}
           >
             {coursesList}
           </div>

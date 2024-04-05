@@ -65,3 +65,12 @@
 .favorite {
     padding: 5px;
 }
+
+/* Адаптив */
+
+@media (max-width: 768px) {
+    .products__item_price {
+        font-size: 12px;
+        margin-bottom: 7px;
+    }
+}

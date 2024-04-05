@@ -15,7 +15,7 @@ export default function StagesOfCreation(props) {
           <Image
             src={imgSrc}
             alt={name}
-            width={147}
+            width={140}
             height={210}
             className={styles.steps__item_img}
             priority={true}

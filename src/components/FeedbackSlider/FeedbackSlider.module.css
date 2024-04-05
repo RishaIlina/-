@@ -74,3 +74,49 @@
       margin: 0 5px;
     }
 }
+
+/* Адаптив */
+@media (max-width: 1000px) {
+  .feedback__slider {
+    width: 650px;
+  }
+
+  .feedback__item_content {
+    width: 264px;
+  }
+
+  .feedback__item {
+    grid-template-columns: 350px auto;
+  }
+
+  .feedback__item_btn {
+    right: 80px;
+  }
+}
+
+@media (max-width: 900px) {
+  .feedback__item {
+    grid-template-columns: 275px auto;
+  }
+
+  .feedback__item_image img{
+    width: 270px;
+  }
+
+  .feedback__item_text {
+    font-size: 10px;
+  }
+
+  .feedback__item_name {
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  .feedback__slider {
+    width: 600px;
+  }
+
+  .feedback__item_btn {
+    right: 145px;
+  }
+}

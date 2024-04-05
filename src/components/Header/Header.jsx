@@ -20,12 +20,19 @@ const Header = () => {
   // Стейт для открытия формы регистрации
   const [registrationFormOpened, setRegistrationFormOpened] = useState(false);
 
+  // Стейт для открытия бургер меню
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const toggleCart = () => {
     setCartOpened(!cartOpened);
   };
 
   const toggleRegistrationForm = () => {
     setRegistrationFormOpened(!registrationFormOpened);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
@@ -45,11 +52,21 @@ const Header = () => {
                 className={styles.logo__img}
                 src="image/logo-header.svg"
                 priority={true}
+                loading="eager"
               />
             </a>
           </Link>
-          <nav className={`${styles.menu} ${styles.header__menu}`}>
-            <button className={styles.menu__btn}>
+          <nav
+            className={`${styles.menu} ${styles.header__menu} ${
+              menuOpen ? styles.menu_open : ""
+            }`}
+          >
+            <button
+              className={`${styles.menu__btn} ${
+                menuOpen ? styles.menu__btn_open : ""
+              }`}
+              onClick={toggleMenu}
+            >
               <span></span>
               <span></span>
               <span></span>
@@ -62,7 +79,14 @@ const Header = () => {
 
           <div className={styles.header__right}>
             <button id="open_basket" className="btn_icon" onClick={toggleCart}>
-              <Image width={23} height={23} alt="logo" src="image/basket.svg" />
+              <Image
+                width={23}
+                height={23}
+                alt="logo"
+                src="image/basket.svg"
+                loading="eager"
+                priority={true}
+              />
               {totalItemsInCart > 0 && (
                 <span className={styles.cart_count}>{totalItemsInCart}</span>
               )}
@@ -74,12 +98,21 @@ const Header = () => {
                   height={23}
                   alt="heart"
                   src="image/heart.svg"
+                  loading="eager"
+                  priority={true}
                 />
               </a>
             </Link>
 
             <button className="btn_icon" onClick={toggleRegistrationForm}>
-              <Image width={23} height={23} alt="user" src="image/user.svg" />
+              <Image
+                width={23}
+                height={23}
+                alt="user"
+                src="image/user.svg"
+                loading="eager"
+                priority={true}
+              />
             </button>
           </div>
         </div>

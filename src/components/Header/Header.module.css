@@ -48,6 +48,32 @@
     align-items: center;
 }
 
-/* .logo {
-    loading: eager;
-} */
+@media (max-width: 640px) {
+    .menu__btn {
+        display: flex;
+    }
+
+    .header__menu {
+        order: 1;
+    }
+
+    .header__menu_list {
+        width: 153px;
+        background-color: #7B6152;
+        color: #FFF8F3;
+        flex-direction: column;
+        gap: 20px 0;
+        padding: 25px 35px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translateY(-110%);
+        transition: transform .5s ease;
+        z-index: 1;
+    }
+
+    
+    .header__menu_list.menu_open {
+        transform: translateY(0%);
+    }
+}

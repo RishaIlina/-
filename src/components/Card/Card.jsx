@@ -75,14 +75,16 @@ export default function Card(props) {
               onClick={onClickFavourites}
             >
               <Image
-                width={isFavourite ? 25 : 17}
-                height={isFavourite ? 25 : 17}
-                src={isFavourite ? "/image/liked.svg" : "/image/heart.svg"}
+                width={17}
+                height={17}
+                src={isFavourite ? "/image/favorite.png" : "/image/heart.svg"}
                 alt={
                   isFavourite
                     ? "Изображение сердца лайкнутое"
                     : "Изображение сердца не лайкнутое"
                 }
+                priority={true}
+                loading="eager"
               />
             </div>
           </div>
@@ -97,6 +99,8 @@ export default function Card(props) {
                 height={32}
                 src={isAdded ? "/image/btn-checked.svg" : "/image/btn-plus.svg"}
                 alt={isAdded ? "Добавлено" : "Добавить"}
+                priority={true}
+                loading="eager"
               />
             </button>
           </div>

@@ -55,6 +55,7 @@ export default function RegistrationForm({ isOpen }) {
               width={15}
               height={15}
               priority={true}
+              loading="eager"
             />
             <input type="password" placeholder="Пароль" />
           </div>

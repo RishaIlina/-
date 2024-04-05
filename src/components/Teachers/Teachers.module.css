@@ -25,11 +25,48 @@
 
 /* Адаптив */
 @media (max-width: 1000px) {
-.team {
-    padding: 50px 0;
+    .team {
+        padding: 50px 0;
+       }
 }
 
-.team__content {
-    gap: 30px 20px;
+@media (max-width: 900px) {
+    .team__item_box {
+        padding: 10px 8px;
+        width: 170px;
+        right: -12px;
+    }
 }
+
+@media (max-width: 768px) {
+    .team {
+        margin-bottom: 100px;
+    }
+
+    .team__img {
+        width: 140px;
+        height: 147px;
+    }
+
+    .team__item_box {
+        width: 109px;
+        padding: 9px 6px;
+        bottom: 8px;
+        right: -54px;
+    }
+
+    .team__item_name {
+        font-size: 8px;
+    }
+
+    .team__item_descr {
+        font-size: 7px;
+    }
+}
+
+@media (max-width: 640px) {
+    .team__item-box {
+        right: auto;
+        left: 115px;
+    }
 }

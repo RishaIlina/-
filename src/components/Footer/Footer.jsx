@@ -71,6 +71,8 @@ const Footer = () => {
                     src="image/linkedin-logo.svg"
                     alt="linkedin"
                     className={styles.footer__social_Image}
+                    loading="eager"
+                    priority={true}
                   />
                 </a>
               </li>

@@ -77,12 +77,13 @@ export default function CartForm({ selectedProducts, closeCartHandler }) {
             </h2>
             <div className={styles.inputs}>
               <div className={styles.input}>
-                <Image
-                  src="/image/person.png"
+                <Image className={styles.person}
+                  src="/image/user_icon.svg"
                   alt="пользователь"
-                  width={13}
-                  height={13}
+                  width={18}
+                  height={18}
                   priority={true}
+                  loading="eager"
                 />
                 <input
                   type="text"
@@ -93,11 +94,12 @@ export default function CartForm({ selectedProducts, closeCartHandler }) {
               </div>
               <div className={styles.input}>
                 <Image
-                  src="/image/phone_input.svg"
+                  src="/image/phone_icon.svg"
                   alt="телефон"
-                  width={18}
-                  height={18}
+                  width={16}
+                  height={16}
                   priority={true}
+                  loading="eager"
                 />
                 <input
                   type="tel"

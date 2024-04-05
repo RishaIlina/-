@@ -46,7 +46,7 @@ export default function Reviews() {
         <meta name="description" content={feedbackDescription} />
       </Head>
       
-      <section className={` ${styles.feedback} section pt_150 pb_150 `}>
+      <section className={` ${styles.feedback} section `}>
         <div className="container">
           <div className={` ${styles.feedback__inner} section__inner `}>
             <div className={` ${styles.feedback__descr} section__descr `}>
@@ -59,14 +59,14 @@ export default function Reviews() {
               </p>
             </div>
 
-            <div className={` ${styles.feedback__content} section__decor `}>
+            <div className={` ${styles.feedback__content}`}>
               <FeedbackSlider feedbackData={initialFeedback} />
             </div>
           </div>
         </div>
       </section>
 
-      <section className={` ${styles.questions} section pb_150 `}>
+      <section className={` ${styles.questions} section `}>
         <div className="container">
           <div className="section__inner">
             <div className={` ${styles.questions__descr} section__descr `}>

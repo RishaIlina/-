@@ -25,7 +25,7 @@ const Navigation = () => {
   };
 
   return (
-    <ul className="menu__list">
+    <ul className={` menu__list header__menu_list `}>
       {navItems.map((item) => (
         <li key={item.path} className="menu__list_item">
           <Link legacyBehavior href={item.path}>

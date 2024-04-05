@@ -31,3 +31,10 @@
     font-size: 24px;
     margin-right: 10px;
 }
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .accordeon__title {
+        font-size: 12px;
+      }
+}

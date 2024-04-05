@@ -1,4 +1,8 @@
-/* Наши преподователи */
+.courses {
+    padding-bottom: 150px;
+    padding-top: 150px;
+}
+
 .team {
     background-color: #A5978E;
     padding: 80px 0 60px;
@@ -8,4 +12,20 @@
 .team__content {
     padding-bottom: 0;
     gap: 75px;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .courses {
+        padding-bottom: 50px;
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .team__content {
+        gap: 30px 60px;
+    }
+
+
 }

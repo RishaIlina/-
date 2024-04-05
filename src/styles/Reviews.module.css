@@ -1,7 +1,24 @@
+.feedback {
+padding-bottom: 150px;
+padding-top: 150px;
+}
+
 .feedback__descr {
     margin-right: 20px;
 }
 
-.feedback__content {
-    padding-bottom: 90px;
+.questions {
+    padding-bottom: 150px;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .questions {
+        padding-bottom: 100px;
+    }   
+    
+    .feedback {
+        padding-bottom: 100px;
+        padding-top: 100px;
+    }
 }

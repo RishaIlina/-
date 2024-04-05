@@ -8,7 +8,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useRouter } from "next/router";
 
-
 /**
  * Слайдер для страницы с Отзывами
  */
@@ -26,7 +25,6 @@ export default function FeedbackSlider({ feedbackData }) {
   }, [swiper]);
 
   const router = useRouter();
-
 
   return (
     <Swiper
@@ -48,36 +46,44 @@ export default function FeedbackSlider({ feedbackData }) {
       }}
     >
       {feedbackData.map((feedback) => (
-        <SwiperSlide key={feedback.id}>
-          <div className={styles.feedback__slider}>
-            <div className={styles.feedback__item}>
-              <div className={styles.feedback__item_image}>
-                <Image
-                  width={380}
-                  height={370}
-                  src={feedback.imgSrc}
-                  alt="Отзыв"
-                />
-              </div>
-              <div className={styles.feedback__item_content}>
-                <a href="https://www.instagram.com/" className={styles.feedback__item_sociallink}>
+        <div className={styles.feedback__slider}>
+          <SwiperSlide key={feedback.id} className={styles.feedback_slide}>
+            <div className={styles.feedback__slider}>
+              <div className={styles.feedback__item}>
+                <div className={styles.feedback__item_image}>
                   <Image
-                    width={22}
-                    height={22}
-                    src="/image/instagram-logo.svg"
-                    target="_blank"
-                    alt="инстаграм"
+                    width={380}
+                    height={370}
+                    src={feedback.imgSrc}
+                    alt="Отзыв"
                   />
-                </a>
-                <p className={styles.feedback__item_name}>{feedback.name}</p>
-                <p className={styles.feedback__item_text}>{feedback.text}</p>
-                <button  onClick = {() => router.push("/Catalog")} className={` button ${styles.feedback__item_btn} `}>
-                  Купить этот товар
-                </button>
+                </div>
+                <div className={styles.feedback__item_content}>
+                  <a
+                    href="https://www.instagram.com/"
+                    className={styles.feedback__item_sociallink}
+                  >
+                    <Image
+                      width={22}
+                      height={22}
+                      src="/image/instagram-logo.svg"
+                      target="_blank"
+                      alt="инстаграм"
+                    />
+                  </a>
+                  <p className={styles.feedback__item_name}>{feedback.name}</p>
+                  <p className={styles.feedback__item_text}>{feedback.text}</p>
+                  <button
+                    onClick={() => router.push("/Catalog")}
+                    className={` button ${styles.feedback__item_btn} `}
+                  >
+                    Купить этот товар
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        </div>
       ))}
     </Swiper>
   );

@@ -34,3 +34,28 @@
     right: 2px;
     bottom: 2px;
 }
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .courses__title {
+        padding: 6px;
+        left: -3px;
+        top: 40%;
+    }
+    
+    .courses__time {
+        padding: 5px;
+        left: -3px;
+        top: 55%;
+    }
+    
+    .courses__priсe {
+        padding: 10px;
+        bottom: 5px;
+        right: -5px;
+    }
+
+    .courses__item_img {
+        font-size: 9px;
+    }
+}

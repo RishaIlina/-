@@ -85,7 +85,31 @@
     }
 
     .footer__social,
-    .footer__social-contacts {
+    .footer__social_contacts {
         justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer__phone img {
+        width: 14px;
+        height: 14px;
+        background-size: cover;
+    }
+
+    .email img {
+        width: 14px;
+        height: 14px;
+        background-size: cover;
+    }
+
+
+    .footer__social_link img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .footer__social_contacts {
+        gap: 8px;
     }
 }

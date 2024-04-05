@@ -110,7 +110,7 @@ export default function HomeDetails() {
         </section>
       </main>
 
-      <section className={` ${styles.steps} pt_150 pb_150 `}>
+      <section className={` ${styles.steps} `}>
         <div className="container section__inner">
           <div className={` ${styles.steps__descr} section__descr `}>
             <h2 className={` ${styles.steps__title} title `}>
@@ -122,7 +122,7 @@ export default function HomeDetails() {
             </p>
           </div>
           <ol
-            className={` ${styles.steps__list} section__content_descr section__decor `}
+            className={` ${styles.steps__list} section__content_descr `}
           >
             {StagessList}
           </ol>
